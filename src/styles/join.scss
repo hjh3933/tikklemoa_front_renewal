@@ -1,0 +1,107 @@
+.Join {
+  flex: 1;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 200px);
+}
+.joinBox {
+  background-color: #fbfbfb;
+  border: 1px solid black;
+  margin: auto;
+  width: 550px;
+  height: 380px;
+  padding: 10px 0;
+  border: 1px solid #c2c1c1;
+  .inputBox {
+    padding: 30px 0;
+    display: flex;
+    .leftBox {
+      display: flex;
+      //   background-color: pink;
+      flex-direction: column;
+      width: 30%;
+      text-align: center;
+    }
+    .rightBox {
+      display: flex;
+      //   background-color: blue;
+      flex-direction: column;
+      width: 70%;
+      text-align: center;
+      input {
+        line-height: 40px;
+        border: none;
+        border-radius: 10px;
+        width: 80%;
+        // box-shadow: 1px 2px 1px 0.5px;
+        padding: 0px 10px;
+      }
+    }
+  }
+  .joinBtn {
+    background-color: #f1eae0;
+    text-align: center;
+    padding: 10px 0;
+    margin: 0 50px;
+    &:hover {
+      cursor: pointer;
+      background-color: #f0e3d1;
+    }
+  }
+  .loginOrJoin {
+    text-align: center;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    div {
+      margin: 0 10px;
+      text-decoration: none;
+      color: black;
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.nameInput {
+  margin: 10px 20px;
+  div {
+    line-height: 40px;
+    font-weight: 600;
+  }
+}
+.idInput {
+  margin: 10px 20px;
+  div {
+    line-height: 40px;
+    font-weight: 600;
+  }
+}
+.pwInput {
+  margin: 10px 20px;
+  div {
+    line-height: 40px;
+    font-weight: 600;
+  }
+}
+.check {
+  display: flex;
+  justify-content: space-around;
+}
+.material-icons {
+  line-height: 40px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.id_msg,
+.pw_msg {
+  text-align: left;
+  margin-left: 40px;
+  font-size: 0.7rem;
+}

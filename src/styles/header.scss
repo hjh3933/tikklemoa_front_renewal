@@ -1,0 +1,49 @@
+.headerBox {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f1eae0;
+  height: 100px;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  .logoBox {
+    line-height: 100px;
+    width: 30%;
+    // border: 1px solid green;
+    .logo {
+      margin-left: 30px;
+      font-size: 1.5rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: black;
+    }
+  }
+
+  .navBox {
+    line-height: 100px;
+    width: 70%;
+    text-align: right;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    .profileImg {
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
+    }
+    .profile {
+      font-weight: 600;
+    }
+    a,
+    div {
+      display: inline;
+      margin-right: 30px;
+      text-decoration: none;
+      color: black;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
