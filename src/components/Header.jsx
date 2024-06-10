@@ -11,23 +11,32 @@ const Header = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    setToken(storedToken);
+    const updateStateFromLocalStorage = () => {
+      const storedToken = localStorage.getItem("token");
+      setToken(storedToken);
 
-    if (storedToken !== null) {
-      // 로그인 상태
-      setNickname(localStorage.getItem("nickname"));
-      if (localStorage.getItem("img") === "default.img") {
-        setImg(
-          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-        );
-      } else {
-        setImg(localStorage.getItem("img"));
+      if (storedToken !== null) {
+        // 로그인 상태
+        setNickname(localStorage.getItem("nickname"));
+        if (localStorage.getItem("img") === "default.img") {
+          setImg(
+            "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+          );
+        } else {
+          setImg(localStorage.getItem("img"));
+        }
+        setBadge(localStorage.getItem("badge"));
       }
-      setBadge(localStorage.getItem("badge"));
-    }
-  }, []);
+    };
 
+    updateStateFromLocalStorage(); // 초기 상태 설정
+
+    window.addEventListener("storage", updateStateFromLocalStorage);
+
+    return () => {
+      window.removeEventListener("storage", updateStateFromLocalStorage);
+    };
+  }, []);
   // 로그아웃
   const logout = (e) => {
     e.preventDefault();

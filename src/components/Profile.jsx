@@ -1,11 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
 import "../styles/mypage.scss";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Profile = () => {
+const Profile = ({ setToggle }) => {
   // state
   const [img, setImg] = useState("");
   const [nameCheckVal, setNameCheckVal] = useState(true);
@@ -21,28 +19,34 @@ const Profile = () => {
   // load 시 user 데이터 불러오기
   const getProfile = async () => {
     const storedToken = localStorage.getItem("token");
-    if (storedToken === null) {
-      // 토큰 만료
-      alert("로그인이 만료되었습니다");
-      navigate("/");
-      window.location.reload();
-    }
-    const res = await axios.get(process.env.REACT_APP_API_SERVER + "/getProfile", {
-      headers: {
-        Authorization: `Bearer ${storedToken}`,
-      },
-    });
-    console.log(res.data);
-    // state 설정
-    setNickname(res.data.nickname);
-    setBadge(res.data.badge);
-    setUserid(res.data.userid);
-    if (res.data.img === "default.img") {
-      setImg(
-        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-      );
-    } else {
-      setImg(res.data.img);
+    try {
+      const res = await axios.get(process.env.REACT_APP_API_SERVER + "/getProfile", {
+        headers: {
+          Authorization: `Bearer ${storedToken}`,
+        },
+      });
+      // console.log(res.data);
+      // state 설정
+      setNickname(res.data.nickname);
+      setBadge(res.data.badge);
+      setUserid(res.data.userid);
+      if (res.data.img === "default.img") {
+        setImg(
+          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+        );
+      } else {
+        setImg(res.data.img);
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 403) {
+        localStorage.clear();
+        alert("로그인이 만료되었습니다");
+        navigate("/");
+        window.location.reload();
+      } else {
+        console.error("프로필을 불러오는 중 오류 발생:", error);
+        alert("프로필을 불러오는 중 오류가 발생했습니다.");
+      }
     }
   };
 
@@ -155,25 +159,44 @@ const Profile = () => {
     if (!useridCheckVal) {
       return alert("아이디 중복검사가 필요합니다.");
     }
-    // 회원수정
-    const data = {
-      nickname: nickname,
-      userid: userid,
-      img: img,
-    };
-    const res = await axios.patch(process.env.REACT_APP_API_SERVER + "/updateUser", data);
-    console.log(res.data);
-    if (res.data.result) {
-      alert(res.data.msg);
+    // FormData 객체 생성
+    const formData = new FormData();
+    formData.append(
+      "dto",
+      new Blob([JSON.stringify({ nickname, userid })], { type: "application/json" })
+    );
+    if (fileInputRef.current.files[0]) {
+      formData.append("file", fileInputRef.current.files[0]);
+    }
+
+    try {
+      const storedToken = localStorage.getItem("token");
+      const res = await axios.patch(process.env.REACT_APP_API_SERVER + "/updateUser", formData, {
+        headers: {
+          Authorization: `Bearer ${storedToken}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      // console.log(res.data);
+      if (res.data.result) {
+        alert(res.data.msg);
+        localStorage.setItem("nickname", res.data.nickname);
+        localStorage.setItem("img", res.data.img);
+        localStorage.setItem("badge", res.data.badge);
+        // 내비게이션 상태를 업데이트하도록 이벤트를 발생시킵니다.
+        window.dispatchEvent(new Event("storage"));
+      }
+    } catch (error) {
+      console.error("회원정보 수정 중 오류 발생:", error);
+      alert("회원정보 수정 중 오류가 발생했습니다.");
     }
   };
 
   return (
     <>
-      <Header></Header>
       <div className="Profile">
         <div className="profileBox">
-          <div className="title">Profile</div>
+          <div className="title">PROFILE</div>
           <div className="profileImg">
             <img
               src={img}
@@ -247,8 +270,15 @@ const Profile = () => {
             </div>
           </div>
         </div>
+        <div className="profileBtnBox">
+          <div className="goProfile nowPage" onClick={() => setToggle(true)}>
+            프로필
+          </div>
+          <div className="goPwUpdate" onClick={() => setToggle(false)}>
+            비밀번호 변경
+          </div>
+        </div>
       </div>
-      <Footer></Footer>
     </>
   );
 };
