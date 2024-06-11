@@ -51,16 +51,16 @@ const Header = () => {
       {/* <h2>header</h2> */}
       <div className="headerBox">
         <div className="logoBox">
-          <Link to={"/community"} className="logo">
+          <Link to={"/"} className="logo">
             TIKKLE MOA
           </Link>
         </div>
         <div className="navBox">
-          <Link to={"/community"} className="community">
+          <Link to={"/"} className="community">
             COMMUNITY
           </Link>
           {token === null ? (
-            <Link to={"/"} className="login">
+            <Link to={"/login"} className="login">
               LOGIN
             </Link>
           ) : (

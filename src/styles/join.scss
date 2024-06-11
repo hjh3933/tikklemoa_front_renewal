@@ -8,6 +8,12 @@
   height: calc(100vh - 200px);
 }
 .joinBox {
+  .material-icons {
+    line-height: 40px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
   background-color: #fbfbfb;
   border: 1px solid black;
   margin: auto;
@@ -92,12 +98,6 @@
 .check {
   display: flex;
   justify-content: space-around;
-}
-.material-icons {
-  line-height: 40px;
-  &:hover {
-    cursor: pointer;
-  }
 }
 .id_msg,
 .pw_msg {

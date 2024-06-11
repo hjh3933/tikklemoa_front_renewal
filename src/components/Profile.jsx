@@ -187,8 +187,15 @@ const Profile = ({ setToggle }) => {
         window.dispatchEvent(new Event("storage"));
       }
     } catch (error) {
-      console.error("회원정보 수정 중 오류 발생:", error);
-      alert("회원정보 수정 중 오류가 발생했습니다.");
+      if (error.response && error.response.status === 403) {
+        localStorage.clear();
+        alert("로그인이 만료되었습니다");
+        navigate("/");
+        window.location.reload();
+      } else {
+        console.error("회원정보 수정 중 오류 발생:", error);
+        alert("회원정보 수정 중 오류가 발생했습니다.");
+      }
     }
   };
 

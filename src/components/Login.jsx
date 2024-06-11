@@ -35,7 +35,7 @@ const Login = ({ setToggle }) => {
       localStorage.setItem("img", res.data.img);
       localStorage.setItem("badge", res.data.badge);
 
-      navigate("/community");
+      navigate("/");
       window.location.reload();
     } else {
       alert(res.data.msg);
