@@ -10,7 +10,7 @@ const Profile = ({ setToggle }) => {
   const [nickname, setNickname] = useState("");
   const [useridCheckVal, setUseridCheckVal] = useState(true);
   const [userid, setUserid] = useState("");
-  const [badge, setBadge] = useState(null);
+  const [badgeUrl, setBadgeUrl] = useState("");
   // ref
   const idCheckRef = useRef();
   const fileInputRef = useRef(null);
@@ -25,10 +25,11 @@ const Profile = ({ setToggle }) => {
           Authorization: `Bearer ${storedToken}`,
         },
       });
-      // console.log(res.data);
+      console.log(res.data);
       // state 설정
+      const badgeUrl = `/images/badge${res.data.badge}.png`;
       setNickname(res.data.nickname);
-      setBadge(res.data.badge);
+      setBadgeUrl(badgeUrl);
       setUserid(res.data.userid);
       if (res.data.img === "default.img") {
         setImg(
@@ -203,7 +204,10 @@ const Profile = ({ setToggle }) => {
     <>
       <div className="Profile">
         <div className="profileBox">
-          <div className="title">PROFILE</div>
+          <div className="titleBox">
+            <div className="title">{nickname}</div>
+            <img src={badgeUrl} alt="badge_img" />
+          </div>
           <div className="profileImg">
             <img
               src={img}

@@ -17,10 +17,18 @@
   height: 400px;
   padding: 10px 0;
   border: 1px solid #c2c1c1;
-  .title {
-    font-weight: 600;
-    font-size: 1.5rem;
-    text-align: center;
+  .titleBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .title {
+      font-weight: 600;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+    img {
+      width: 15px;
+    }
   }
   .profileImg {
     margin-top: 15px;

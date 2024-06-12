@@ -47,6 +47,13 @@ $green-1: #dee2d5;
   // padding: 0px 10px;
   margin: auto;
 }
+.CalendarMonth.loading {
+  display: none;
+}
+
+.CalendarMonth.loaded {
+  display: block;
+}
 .CalendarMonth {
   .setting {
     // text-align: right;

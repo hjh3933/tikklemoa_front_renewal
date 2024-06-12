@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import "react-calendar/dist/Calendar.css";
 import "../styles/calendarSet.scss";
 import "../styles/calendarMonth.scss";
-import "react-calendar/dist/Calendar.css";
 import Calendar from "react-calendar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -18,6 +18,7 @@ const CalendarMonth = ({ setSelectedDate, dateData }) => {
   const themes = ["none", "purple", "green", "blue", "red"];
 
   // state
+  const [isLoaded, setIsLoaded] = useState(false);
   const navigate = useNavigate();
   const [date, setDate] = useState(formattedDate);
   const [activeStartDate, setActiveStartDate] = useState(new Date());
@@ -80,9 +81,19 @@ const CalendarMonth = ({ setSelectedDate, dateData }) => {
   }, [setting]);
 
   useEffect(() => {
-    getMonth();
-    // 처음엔 오늘날짜로 설정
-    setSelectedDate(formattedSelectedDate);
+    // 컴포넌트를 숨기고 데이터를 가져옴
+    const fetchDataAndLoadStyles = async () => {
+      await getMonth();
+      setSelectedDate(formattedSelectedDate);
+
+      // 데이터 로드 후 100ms 후에 컴포넌트를 표시
+      const timer = setTimeout(() => {
+        setIsLoaded(true);
+      }, 100);
+      return () => clearTimeout(timer);
+    };
+
+    fetchDataAndLoadStyles();
   }, []);
 
   useEffect(() => {
@@ -142,9 +153,6 @@ const CalendarMonth = ({ setSelectedDate, dateData }) => {
         return `react-calendar__tile react-calendar__tile--${theme}lthree`;
       } else {
         return `react-calendar__tile react-calendar__tile--${theme}more`;
-      }
-      if (priceView) {
-        // 숫자 보기 true인 경우
       }
     }
     return null;
@@ -241,7 +249,7 @@ const CalendarMonth = ({ setSelectedDate, dateData }) => {
 
   return (
     <>
-      <div className="CalendarMonth">
+      <div className={`CalendarMonth ${isLoaded ? "loaded" : "loading"}`}>
         <div className="setting" onClick={() => setIsModalOpen(true)}>
           <i className="material-icons">settings</i>
         </div>

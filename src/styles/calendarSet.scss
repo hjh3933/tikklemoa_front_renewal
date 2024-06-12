@@ -1,5 +1,16 @@
-.CalendarSet {
+.MyCalendar {
   flex: 1;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 200px);
+  overflow: auto;
+  position: relative;
+}
+.CalendarSet {
+  // flex: 1;
   margin-top: 100px;
   margin-bottom: 120px;
   display: flex;
@@ -7,8 +18,6 @@
   align-items: center;
   flex-direction: column;
   // height: calc(100vh - 200px);
-  overflow: auto;
-  position: relative;
   .Title {
     margin: 15px 0px;
     // margin: 15px 0px;

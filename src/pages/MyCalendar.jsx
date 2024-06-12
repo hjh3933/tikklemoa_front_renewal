@@ -9,7 +9,9 @@ const MyCalendar = () => {
   return (
     <>
       <Header></Header>
-      {toggle ? <CalendarSet setToggle={setToggle} /> : <CalendarStats setToggle={setToggle} />}
+      <div className="MyCalendar">
+        {toggle ? <CalendarSet setToggle={setToggle} /> : <CalendarStats setToggle={setToggle} />}
+      </div>
       <Footer></Footer>
     </>
   );
