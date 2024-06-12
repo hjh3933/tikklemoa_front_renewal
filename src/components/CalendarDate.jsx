@@ -5,7 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import CalendarModal from "./CalendarModal";
 
-const CalendarDate = ({ selectedDate }) => {
+const CalendarDate = ({ selectedDate, dateData, setDateData }) => {
   // 오늘날짜 가져오기
   const today = new Date();
   const year = today.getFullYear();
@@ -15,7 +15,7 @@ const CalendarDate = ({ selectedDate }) => {
 
   // state
   const navigate = useNavigate();
-  const [dateData, setDateData] = useState([]);
+  // const [dateData, setDateData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMode, setModalMode] = useState("plus");
   const [modalData, setModalData] = useState(null);
@@ -75,7 +75,7 @@ const CalendarDate = ({ selectedDate }) => {
   return (
     <>
       <div className="CalendarDate">
-        <div className="selectedDate">{selectedDate}일 내역</div>
+        <div className="selectedDate">{selectedDate}</div>
         <div className="plusBox">
           <div className="plus" onClick={() => openModal("plus")}>
             <i className="material-icons plusIcon">add</i>

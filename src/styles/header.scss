@@ -2,10 +2,12 @@
   display: flex;
   justify-content: space-between;
   background-color: #f1eae0;
+  // background-color: #b59c78;
   height: 100px;
   position: fixed;
   top: 0px;
   width: 100%;
+  z-index: 9999;
   .logoBox {
     line-height: 100px;
     width: 30%;

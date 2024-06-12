@@ -1,57 +1,228 @@
-// 변수 설정
-$red-1: #d04848;
-$red-2: #d15f5f;
+// theme red
+$red-5: #d04848;
+$red-4: #d15f5f;
 $red-3: #d27f7f;
-$red-4: #cea4a4;
-$red-5: #efd5d5;
+$red-2: #cea4a4;
+$red-1: #e1cdcd;
+// theme blue
+$blue-5: #4e6181;
+$blue-4: #758db6;
+$blue-3: #8fa5b3;
+$blue-2: #aebec7;
+$blue-1: #dbe2e6;
+// theme purple
+$purple-5: #683d75;
+$purple-4: #7e5a8a;
+$purple-3: #9677a0;
+$purple-2: #ac94b4;
+$purple-1: #dcd2df;
+// theme green
+$green-5: #576a4e;
+$green-4: #708467;
+$green-3: #b4c291;
+$green-2: #c4cfa9;
+$green-1: #dee2d5;
+
+@mixin theme-colors($theme, $color1, $color2, $color3, $color4, $color5) {
+  &--#{$theme}lone {
+    background-color: $color1 !important;
+  }
+
+  &--#{$theme}ltwo {
+    background-color: $color2 !important;
+  }
+
+  &--#{$theme}lthree {
+    background-color: $color3 !important;
+  }
+
+  &--#{$theme}more {
+    background-color: $color4 !important;
+  }
+  &--#{$theme}none {
+    background-color: $color5 !important;
+  }
+}
 .CalendarMonth > .react_calendar {
   // padding: 0px 10px;
   margin: auto;
 }
-
-/* custom-calendar.css */
-.react-calendar {
-  font-family: "Arial", sans-serif;
-  min-width: 100%;
-  border: none !important;
-  box-shadow: none !important;
-
-  .react-calendar__tile {
-    // min-width: 100px; // 타일의 너비
-    // min-height: 100%; // 타일의 높이
-    display: flex;
-    flex-direction: column;
-    align-items: center; // 수직 정렬: 위쪽 정렬
-    justify-content: flex-start; // 수평 정렬: 가운데 정렬
-    font-size: 0.7rem; // 텍스트 크기
-    box-sizing: border-box; // 패딩 포함한 크기 설정
-    color: rgb(0, 0, 0);
-    padding-top: 5px;
-    text-align: center;
-
-    &--red1 {
-      background-color: $red-1 !important;
-    }
-
-    &--red2 {
-      background-color: $red-2 !important;
-    }
-
-    &--red3 {
-      background-color: $red-3 !important;
+.CalendarMonth {
+  .setting {
+    // text-align: right;
+    .material-icons {
+      scale: 1.8;
+      margin-bottom: 20px;
+      margin-left: 20px;
+      display: inline-block;
+      transition: transform 1s ease-in-out;
+      &:hover {
+        cursor: pointer;
+        color: #ea8500;
+        transform: rotate(180deg);
+      }
     }
   }
+  /* custom-calendar.css */
+  .react-calendar {
+    font-family: "Arial", sans-serif;
+    min-width: 100%;
+    border: none !important;
+    // box-shadow: none !important;
+    box-shadow: -3px -3px 5px rgba(0, 0, 0, 0.3);
 
-  .react-calendar__month-view__days__day {
-    height: 60px;
+    .react-calendar__tile {
+      @include theme-colors(red, $red-2, $red-3, $red-4, $red-5, $red-1);
+      @include theme-colors(blue, $blue-2, $blue-3, $blue-4, $blue-5, $blue-1);
+      @include theme-colors(green, $green-2, $green-3, $green-4, $green-5, $green-1);
+      @include theme-colors(purple, $purple-2, $purple-3, $purple-4, $purple-5, $purple-1);
+      // min-width: 100px; // 타일의 너비
+      // min-height: 100%; // 타일의 높이
+      display: flex;
+      flex-direction: column;
+      align-items: center; // 수직 정렬: 위쪽 정렬
+      justify-content: flex-start; // 수평 정렬: 가운데 정렬
+      font-size: 0.7rem; // 텍스트 크기
+      box-sizing: border-box; // 패딩 포함한 크기 설정
+      color: rgb(0, 0, 0);
+      padding-top: 5px;
+      text-align: center;
+    }
+
+    .react-calendar__month-view__days__day {
+      height: 80px;
+    }
+    .react-calendar__month-view__weekdays__weekday {
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
-  .react-calendar__month-view__weekdays__weekday {
-    height: 60px;
+  abbr[title] {
+    text-decoration: none;
+  }
+  // modal
+  .modal {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    .modal-content {
+      background-color: #fefefe;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 600px;
+      position: relative;
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+        &:hover,
+        &:focus {
+          color: black;
+          text-decoration: none;
+          cursor: pointer;
+        }
+      }
+      h2 {
+        margin-bottom: 20px;
+      }
+      .theme,
+      .priceLevel,
+      .priceView {
+        margin-bottom: 20px;
+      }
+      // theme
+      .theme {
+        display: flex;
+        // justify-content: space-evenly;
+        align-items: center;
+        border-bottom: 1px solid gray;
+        padding-bottom: 20px;
+        .theme_title {
+          width: 25%;
+        }
+        input {
+          margin-right: 5px;
+          line-height: 30px;
+        }
+        label {
+          font-size: 1rem;
+          margin-right: 20px;
+        }
+      }
+      .priceLevel {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid gray;
+        padding-bottom: 20px;
+        input {
+          margin-right: 5px;
+          width: 25%;
+          line-height: 30px;
+        }
+        .priceLevel_title {
+          margin-right: 10px;
+          width: 25%;
+        }
+      }
+      .priceView {
+        display: flex;
+        align-items: center;
+        .priceView_title {
+          // margin-right: 10px;
+          width: 25%;
+        }
+        input {
+          margin-right: 5px;
+          line-height: 30px;
+        }
+        label {
+          margin-right: 20px;
+          font-size: 1rem;
+        }
+      }
+      .btnBox {
+        display: flex;
+        justify-content: center;
+        border-top: 1px solid gray;
+        padding-top: 10px;
+        .insertBtn {
+          width: 100px;
+          background-color: #f1eae0;
+          text-align: center;
+          padding: 10px 0;
+          margin: 0 10px;
+          border-radius: 5px;
+          &:hover {
+            cursor: pointer;
+            background-color: #f0e3d1;
+          }
+        }
+      }
+    }
   }
 }
-abbr[title] {
-  text-decoration: none;
+//
+.tile-content {
+  div {
+    font-size: 0.5rem;
+  }
+  .total_minus {
+  }
+  .total_plus {
+  }
+  .date_total {
+  }
 }

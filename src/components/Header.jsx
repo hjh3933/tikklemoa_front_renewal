@@ -68,9 +68,6 @@ const Header = () => {
               <Link to={"/calendar"} className="calendar">
                 CALENDAR
               </Link>
-              <Link to={"/setting"} className="setting">
-                SETTING
-              </Link>
               <div className="logout" onClick={logout}>
                 LOGOUT
               </div>
