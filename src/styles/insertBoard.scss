@@ -1,0 +1,104 @@
+.InsertBoard {
+  flex: 1;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 200px);
+  overflow: auto;
+
+  .insertBoardBox {
+    min-width: 1000px;
+    padding: 10px 0;
+    margin: auto;
+    // 세로 중앙 정렬 국룰로 삼아!!
+    h3 {
+      margin-bottom: 10px;
+    }
+    .boardBox {
+      border: 1px solid black;
+      padding: 10px 0;
+
+      .titleBox,
+      .fileBox,
+      .contentBox,
+      .existingImgUrls {
+        display: flex;
+        padding: 5px 10px;
+        &:not(:last-child) {
+          align-items: center;
+        }
+
+        .ten {
+          width: 10%;
+        }
+
+        input,
+        textarea,
+        .imgBox {
+          width: 90%;
+        }
+
+        input {
+          padding: 5px;
+        }
+
+        textarea {
+          height: 200px;
+          padding: 10px;
+        }
+      }
+
+      .existingImgUrls {
+        .imgBox {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+
+          .imgContainer {
+            position: relative;
+            display: block;
+
+            img {
+              height: 100px;
+              //   width: 100px;
+              display: block;
+            }
+
+            button {
+              position: absolute;
+              top: 5px;
+              right: 5px;
+              background-color: red;
+              color: white;
+              border: none;
+              border-radius: 50%;
+              width: 20px;
+              height: 20px;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+          }
+        }
+      }
+    }
+    .btnBox {
+      display: flex;
+      align-items: center;
+      padding: 10px 0;
+
+      div {
+        background-color: pink;
+        padding: 5px 15px;
+        border-radius: 5px;
+        &:hover {
+          cursor: pointer;
+          background-color: rgb(255, 149, 167);
+        }
+      }
+    }
+  }
+}

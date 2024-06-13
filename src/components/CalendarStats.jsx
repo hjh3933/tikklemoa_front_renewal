@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "../styles/calendarStats.scss";
 import CalendarStatsContent from "./CalendarStatsContent";
 
 const CalendarStats = ({ setToggle }) => {

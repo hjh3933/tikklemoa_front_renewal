@@ -43,7 +43,7 @@ const Header = () => {
     localStorage.clear();
     alert("로그아웃 되었습니다.");
     // + 메인 페이지로 이동
-    navigate("/");
+    navigate("/?page=1");
     window.location.reload();
   };
   return (
@@ -51,12 +51,24 @@ const Header = () => {
       {/* <h2>header</h2> */}
       <div className="headerBox">
         <div className="logoBox">
-          <Link to={"/"} className="logo">
+          <Link
+            to={{
+              pathname: "/",
+              search: "?page=1",
+            }}
+            className="logo"
+          >
             TIKKLE MOA
           </Link>
         </div>
         <div className="navBox">
-          <Link to={"/"} className="community">
+          <Link
+            to={{
+              pathname: "/",
+              search: "?page=1",
+            }}
+            className="community"
+          >
             COMMUNITY
           </Link>
           {token === null ? (

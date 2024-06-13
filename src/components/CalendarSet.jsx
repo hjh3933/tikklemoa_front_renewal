@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "../styles/calendarSet.scss";
 import CalendarMonth from "./CalendarMonth";
 import CalendarDate from "./CalendarDate";
 

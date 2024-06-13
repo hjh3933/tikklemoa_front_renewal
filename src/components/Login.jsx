@@ -35,10 +35,16 @@ const Login = ({ setToggle }) => {
       localStorage.setItem("img", res.data.img);
       localStorage.setItem("badge", res.data.badge);
 
-      navigate("/");
+      navigate("/?page=1");
       window.location.reload();
     } else {
       alert(res.data.msg);
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      loginUser();
     }
   };
 
@@ -60,7 +66,13 @@ const Login = ({ setToggle }) => {
               <input type="text" name="userid" id="userid" ref={useridRef} />
             </div>
             <div className="pwInput">
-              <input type="password" name="userpw" id="userpw" ref={userpwRef} />
+              <input
+                type="password"
+                name="userpw"
+                id="userpw"
+                ref={userpwRef}
+                onKeyDown={handleKeyDown}
+              />
             </div>
           </div>
         </div>

@@ -1,0 +1,145 @@
+.Commnunity {
+  flex: 1;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 200px);
+  overflow: auto;
+  .communityBox {
+    // border: 1px solid black;
+    padding: 10px;
+    width: 1000px;
+    padding: 10px 0;
+    .boardListBox {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .noSearchData {
+        padding: 50px 0;
+      }
+      .BoardList {
+        &:first-of-type {
+          border-top: 1px solid rgba($color: #000000, $alpha: 0.2);
+        }
+        &:hover {
+          background-color: rgb(250, 250, 250);
+          transition: 0.3s;
+          cursor: pointer;
+        }
+        display: flex;
+        // border: 1px solid black;
+        box-sizing: border-box;
+        border-bottom: 1px solid rgba($color: #000000, $alpha: 0.2);
+        padding: 5px 10px;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        .listContent {
+          width: 25%;
+        }
+        .listContent:not(:first-of-type) {
+          text-align: right;
+        }
+        .user,
+        .likes {
+          display: flex;
+          align-items: center;
+          justify-content: right;
+          .material-icons {
+            color: rgb(255, 116, 116);
+          }
+        }
+        .user {
+          div {
+            margin-right: 5px;
+            img {
+              width: 10px;
+            }
+          }
+        }
+        .dateInfo {
+          font-size: 0.8rem;
+        }
+      }
+    }
+    .page {
+      .pagination {
+        display: flex;
+        // border: 1px solid black;
+        justify-content: center;
+        padding: 5px 0;
+        div {
+          margin-right: 10px;
+          color: rgb(150, 150, 150);
+          &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+          }
+        }
+        .active {
+          color: black;
+          //   font-weight: 400;
+          text-decoration: underline;
+          text-underline-offset: 3px;
+        }
+      }
+    }
+    .boardTop {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      .addBoardBox {
+        .addBoard {
+          background-color: rgb(255, 217, 147);
+          padding: 5px 10px;
+          border-radius: 5px;
+          text-decoration: none;
+          color: black;
+          &:hover {
+            cursor: pointer;
+            background-color: rgb(255, 193, 77);
+            // color: white;
+            transition: 0.5s;
+          }
+        }
+      }
+      .searchBox {
+        display: flex;
+        align-items: center;
+        * {
+          margin-right: 5px;
+        }
+        select {
+          padding: 5px 10px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: #fff;
+          font-size: 16px;
+          color: #333;
+          appearance: none;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+
+          &:focus {
+            border-color: #007bff;
+            outline: none;
+          }
+        }
+        input {
+          padding: 5px 10px;
+          border-radius: 5px;
+          border: 1px solid rgba($color: #000000, $alpha: 0.2);
+        }
+        i {
+          &:hover {
+            cursor: pointer;
+            color: rgb(255, 193, 77);
+          }
+        }
+      }
+    }
+  }
+}

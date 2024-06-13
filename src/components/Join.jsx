@@ -133,6 +133,12 @@ const Join = ({ setToggle }) => {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      joinUser();
+    }
+  };
+
   return (
     <div className="Join">
       <div className="joinBox">
@@ -178,9 +184,21 @@ const Join = ({ setToggle }) => {
             <div className="id_msg" ref={idCheckRef}></div>
             <div className="pwInput check">
               {visible ? (
-                <input type="text" name="userpw" id="userpw" onChange={handleChangePw} />
+                <input
+                  type="text"
+                  name="userpw"
+                  id="userpw"
+                  onChange={handleChangePw}
+                  onKeyDown={handleKeyDown}
+                />
               ) : (
-                <input type="password" name="userpw" id="userpw" onChange={handleChangePw} />
+                <input
+                  type="password"
+                  name="userpw"
+                  id="userpw"
+                  onChange={handleChangePw}
+                  onKeyDown={handleKeyDown}
+                />
               )}
 
               <i className="material-icons pwCheck" onClick={() => setVisible(!visible)}>
