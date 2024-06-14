@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useLocation, useNavigate } from "react-router-dom";
 import BoardDetailContent from "../components/BoardDetailContent";
+import BoardCommentContent from "../components/BoardCommentContent";
 
 const BoardDetail = () => {
   const navigate = useNavigate();
@@ -49,8 +50,8 @@ const BoardDetail = () => {
     } catch (error) {
       if (error.response && error.response.status === 403) {
         localStorage.clear();
-        // alert("로그인이 만료되었습니다");
-        // navigate("/");
+        alert("로그인이 만료되었습니다");
+        navigate("/");
         window.location.reload();
       } else {
         console.error("게시글 정보를 불러오는 중 오류 발생:", error);
@@ -70,7 +71,11 @@ const BoardDetail = () => {
         <div className="BoardDetailBox">
           {/* 중앙 정렬될 컨텐츠 */}
           <BoardDetailContent boardDetails={boardDetails} />
-          <div>{/* 댓글 목록, 등록, 삭제 */}</div>
+          <BoardCommentContent
+            commentList={commentList}
+            boardId={boardId}
+            getDetails={getDetails}
+          />
         </div>
       </div>
       <Footer />

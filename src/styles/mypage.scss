@@ -1,4 +1,4 @@
-.Profile {
+.MyPage {
   flex: 1;
   margin-top: 100px;
   margin-bottom: 100px;
@@ -6,133 +6,141 @@
   align-items: center;
   height: calc(100vh - 200px);
 }
-.profileBox {
-  .idCheckNull {
-    visibility: hidden;
-  }
-  background-color: #fbfbfb;
-  border: 1px solid black;
-  margin-left: 50px;
-  width: 500px;
-  height: 400px;
-  padding: 10px 0;
-  border: 1px solid #c2c1c1;
-  .titleBox {
+.MyPageBox {
+  margin: auto;
+  display: flex;
+  .Profile {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    .title {
-      font-weight: 600;
-      font-size: 1.5rem;
-      text-align: center;
-    }
-    img {
-      width: 15px;
-    }
-  }
-  .profileImg {
-    margin-top: 15px;
-    // background-color: pink;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-    }
-  }
-  .inputBox {
-    padding: 30px 0;
-    display: flex;
-    .leftBox {
-      display: flex;
-      //   background-color: pink;
-      flex-direction: column;
-      width: 20%;
-      text-align: center;
-    }
-    .rightBox {
-      display: flex;
-      //   background-color: blue;
-      flex-direction: column;
-      width: 80%;
-      text-align: center;
-      input {
+    margin-right: 10px;
+    .profileBox {
+      background-color: #fbfbfb;
+      border: 1px solid black;
+      margin-left: 50px;
+      width: 500px;
+      height: 400px;
+      padding: 10px 0;
+      border: 1px solid #c2c1c1;
+      .idCheckNull {
+        visibility: hidden;
+      }
+      .titleBox {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .title {
+          font-weight: 600;
+          font-size: 1.5rem;
+          text-align: center;
+        }
+        img {
+          width: 15px;
+        }
+      }
+      .profileImg {
+        margin-top: 15px;
+        // background-color: pink;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+        }
+      }
+      .inputBox {
+        padding: 30px 0;
+        display: flex;
+        .leftBox {
+          display: flex;
+          //   background-color: pink;
+          flex-direction: column;
+          width: 20%;
+          text-align: center;
+        }
+        .rightBox {
+          display: flex;
+          //   background-color: blue;
+          flex-direction: column;
+          width: 80%;
+          text-align: center;
+          input {
+            line-height: 40px;
+            border: none;
+            border-radius: 10px;
+            width: 80%;
+            // box-shadow: 1px 2px 1px 0.5px;
+            padding: 0px 10px;
+          }
+        }
+      }
+      .nameInput {
+        margin: 10px 20px;
+        div {
+          line-height: 40px;
+          font-weight: 600;
+        }
+      }
+      .idInput {
+        margin: 10px 20px;
+        div {
+          line-height: 40px;
+          font-weight: 600;
+        }
+      }
+      .check {
+        display: flex;
+        justify-content: space-around;
+      }
+      .material-icons {
         line-height: 40px;
-        border: none;
-        border-radius: 10px;
-        width: 80%;
-        // box-shadow: 1px 2px 1px 0.5px;
-        padding: 0px 10px;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .id_msg,
+      .pw_msg {
+        text-align: left;
+        margin-left: 40px;
+        font-size: 0.7rem;
       }
     }
-  }
-  .nameInput {
-    margin: 10px 20px;
-    div {
-      line-height: 40px;
-      font-weight: 600;
+    .profileBtnBox {
+      height: 400px;
+      .goProfile,
+      .goPwUpdate {
+        // border: 1px solid black;
+        height: 50px;
+        line-height: 50px;
+        background-color: #fcf8f2;
+        font-size: 0.7rem;
+        text-align: center;
+        padding: 0 5px;
+        &:hover {
+          cursor: pointer;
+          text-decoration: underline;
+        }
+      }
+      .nowPage {
+        background-color: #f0e3d1;
+      }
     }
-  }
-  .idInput {
-    margin: 10px 20px;
-    div {
-      line-height: 40px;
-      font-weight: 600;
-    }
-  }
-  .check {
-    display: flex;
-    justify-content: space-around;
-  }
-  .material-icons {
-    line-height: 40px;
-    &:hover {
-      cursor: pointer;
-    }
-  }
-  .id_msg,
-  .pw_msg {
-    text-align: left;
-    margin-left: 40px;
-    font-size: 0.7rem;
-  }
-}
-.profileBtnBox {
-  height: 400px;
-  .goProfile,
-  .goPwUpdate {
-    // border: 1px solid black;
-    height: 50px;
-    line-height: 50px;
-    background-color: #fcf8f2;
-    font-size: 0.7rem;
-    text-align: center;
-    padding: 0 5px;
-    &:hover {
-      cursor: pointer;
-      text-decoration: underline;
-    }
-  }
-  .nowPage {
-    background-color: #f0e3d1;
-  }
-}
-.btnBox {
-  display: flex;
-  justify-content: center;
-  .updateBtn,
-  .cancelBtn {
-    width: 100px;
-    background-color: #f1eae0;
-    text-align: center;
-    padding: 10px 0;
-    margin: 0 10px;
-    border-radius: 5px;
-    &:hover {
-      cursor: pointer;
-      background-color: #f0e3d1;
+    .btnBox {
+      display: flex;
+      justify-content: center;
+      .updateBtn,
+      .cancelBtn {
+        width: 100px;
+        background-color: #f1eae0;
+        text-align: center;
+        padding: 10px 0;
+        margin: 0 10px;
+        border-radius: 5px;
+        &:hover {
+          cursor: pointer;
+          background-color: #f0e3d1;
+        }
+      }
     }
   }
 }

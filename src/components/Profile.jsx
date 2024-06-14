@@ -201,96 +201,94 @@ const Profile = ({ setToggle }) => {
   };
 
   return (
-    <>
-      <div className="Profile">
-        <div className="profileBox">
-          <div className="titleBox">
-            <div className="title">{nickname}</div>
-            <img src={badgeUrl} alt="badge_img" />
-          </div>
-          <div className="profileImg">
-            <img
-              src={img}
-              alt="profileImg"
-              onClick={handleImageClick}
-              style={{ cursor: "pointer" }}
-            />
-            <input
-              type="file"
-              ref={fileInputRef}
-              style={{ display: "none" }}
-              onChange={handleFileChange}
-            />
-          </div>
-          <div className="inputBox">
-            <div className="leftBox">
-              <div className="nameInput">
-                <div>NAME</div>
-              </div>
-              <div className="idInput">
-                <div>ID</div>
-                <div className="id_msg"></div>
-              </div>
+    <div className="Profile">
+      <div className="profileBox">
+        <div className="titleBox">
+          <div className="title">{nickname}</div>
+          <img src={badgeUrl} alt="badge_img" />
+        </div>
+        <div className="profileImg">
+          <img
+            src={img}
+            alt="profileImg"
+            onClick={handleImageClick}
+            style={{ cursor: "pointer" }}
+          />
+          <input
+            type="file"
+            ref={fileInputRef}
+            style={{ display: "none" }}
+            onChange={handleFileChange}
+          />
+        </div>
+        <div className="inputBox">
+          <div className="leftBox">
+            <div className="nameInput">
+              <div>NAME</div>
             </div>
-            <div className="rightBox">
-              <div className="nameInput check">
-                <input
-                  type="text"
-                  name="nickname"
-                  id="nickname"
-                  onChange={handleChangeName}
-                  value={nickname}
-                />
-                <i
-                  className="material-icons nameCheck"
-                  onClick={nameCheck}
-                  style={{
-                    color: nameCheckVal === true ? "green" : "red",
-                  }}
-                >
-                  check_circle
-                </i>
-              </div>
-              <div className="idInput check">
-                <input
-                  type="text"
-                  name="userid"
-                  id="userid"
-                  onChange={handleChangeId}
-                  value={userid}
-                />
-                <i
-                  className="material-icons idCheck"
-                  onClick={idCheck}
-                  style={{
-                    color: useridCheckVal === true ? "green" : "red",
-                  }}
-                >
-                  check_circle
-                </i>
-              </div>
-              <div className="id_msg" ref={idCheckRef}></div>
+            <div className="idInput">
+              <div>ID</div>
+              <div className="id_msg"></div>
             </div>
           </div>
-          <div className="btnBox">
-            <div className="updateBtn" onClick={updateUser}>
-              수정
+          <div className="rightBox">
+            <div className="nameInput check">
+              <input
+                type="text"
+                name="nickname"
+                id="nickname"
+                onChange={handleChangeName}
+                value={nickname}
+              />
+              <i
+                className="material-icons nameCheck"
+                onClick={nameCheck}
+                style={{
+                  color: nameCheckVal === true ? "green" : "red",
+                }}
+              >
+                check_circle
+              </i>
             </div>
-            <div className="cancelBtn" onClick={clickCancel}>
-              취소
+            <div className="idInput check">
+              <input
+                type="text"
+                name="userid"
+                id="userid"
+                onChange={handleChangeId}
+                value={userid}
+              />
+              <i
+                className="material-icons idCheck"
+                onClick={idCheck}
+                style={{
+                  color: useridCheckVal === true ? "green" : "red",
+                }}
+              >
+                check_circle
+              </i>
             </div>
+            <div className="id_msg" ref={idCheckRef}></div>
           </div>
         </div>
-        <div className="profileBtnBox">
-          <div className="goProfile nowPage" onClick={() => setToggle(true)}>
-            프로필
+        <div className="btnBox">
+          <div className="updateBtn" onClick={updateUser}>
+            수정
           </div>
-          <div className="goPwUpdate" onClick={() => setToggle(false)}>
-            비밀번호 변경
+          <div className="cancelBtn" onClick={clickCancel}>
+            취소
           </div>
         </div>
       </div>
-    </>
+      <div className="profileBtnBox">
+        <div className="goProfile nowPage" onClick={() => setToggle(true)}>
+          프로필
+        </div>
+        <div className="goPwUpdate" onClick={() => setToggle(false)}>
+          비밀번호 변경
+        </div>
+      </div>
+    </div>
   );
 };
 

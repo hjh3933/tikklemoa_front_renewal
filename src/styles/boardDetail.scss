@@ -8,12 +8,13 @@
   height: calc(100vh - 200px);
   overflow: auto;
   .BoardDetailBox {
+    margin: auto;
+    display: flex;
     .BoardDetailContent {
-      //   border: 1px solid black;
-      //   padding: 10px;
       min-width: 700px;
       padding: 0 10px;
       background-color: #f9f9f9;
+      margin-right: 10px;
       .boardBox {
         // border: 1px solid black;
         padding: 10px 0;

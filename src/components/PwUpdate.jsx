@@ -159,11 +159,13 @@ const PwUpdate = ({ setToggle }) => {
     <>
       <div className="Profile">
         <div className="profileBox">
-          {delVisible ? (
-            <div className="title">DELETE USER</div>
-          ) : (
-            <div className="title">NEW PASSWORD</div>
-          )}
+          <div className="titleBox">
+            {delVisible ? (
+              <div className="title">DELETE USER</div>
+            ) : (
+              <div className="title">NEW PASSWORD</div>
+            )}
+          </div>
           <div className="inputBox">
             <div className="leftBox">
               {delVisible && (
