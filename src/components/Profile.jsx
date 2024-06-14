@@ -25,7 +25,7 @@ const Profile = ({ setToggle }) => {
           Authorization: `Bearer ${storedToken}`,
         },
       });
-      console.log(res.data);
+      // console.log(res.data);
       // state 설정
       const badgeUrl = `/images/badge${res.data.badge}.png`;
       setNickname(res.data.nickname);

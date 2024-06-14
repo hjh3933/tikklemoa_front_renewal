@@ -115,7 +115,7 @@ const Commnunity = () => {
           </div>
           <div className="boardListBox">
             {currentPosts.length === 0 ? (
-              <div className="noSearchData">검색 결과가 없습니다</div>
+              <div className="noSearchData">게시글이 없습니다</div>
             ) : (
               currentPosts.map((board) => <BoardList key={board.id} board={board} />)
             )}

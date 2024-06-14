@@ -9,7 +9,135 @@
     margin: auto;
     display: flex;
     .MyBoardContent {
-      background-color: pink;
+      display: flex;
+      .myBoardBox {
+        padding: 10px;
+        width: 700px;
+        padding: 10px;
+        background-color: #fbfbfb;
+        border: 1px solid #c2c1c1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        .myContent_header {
+          display: flex;
+          padding: 0 30px;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 10px;
+          .header {
+            background-color: rgb(216, 216, 216);
+            padding: 5px 10px;
+            border-radius: 5px;
+            &:hover {
+              cursor: pointer;
+              background-color: rgb(255, 185, 56);
+            }
+          }
+          .active {
+            background-color: rgb(255, 202, 104);
+          }
+        }
+        .boardListBox {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          .noSearchData {
+            padding: 50px 0;
+          }
+          .BoardList {
+            &:first-of-type {
+              border-top: 1px solid rgba($color: #000000, $alpha: 0.2);
+            }
+            &:hover {
+              background-color: rgb(245, 244, 244);
+              transition: 0.3s;
+              cursor: pointer;
+            }
+            display: flex;
+            // border: 1px solid black;
+            box-sizing: border-box;
+            border-bottom: 1px solid rgba($color: #000000, $alpha: 0.2);
+            padding: 5px 10px;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            .listContent {
+              width: 25%;
+            }
+            .listContent:not(:first-of-type) {
+              text-align: right;
+            }
+            .readOrNot {
+              font-size: 0.7rem;
+              color: rgb(115, 115, 115);
+            }
+            .user,
+            .likes {
+              display: flex;
+              align-items: center;
+              justify-content: right;
+              .material-icons {
+                color: rgb(255, 116, 116);
+              }
+            }
+            .user {
+              div {
+                margin-right: 5px;
+                img {
+                  width: 10px;
+                }
+              }
+            }
+            .dateInfo {
+              font-size: 0.8rem;
+            }
+          }
+        }
+        .page {
+          .pagination {
+            display: flex;
+            // border: 1px solid black;
+            justify-content: center;
+            padding: 5px 0;
+            div {
+              margin-right: 10px;
+              color: rgb(150, 150, 150);
+              &:hover {
+                cursor: pointer;
+                text-decoration: underline;
+              }
+            }
+            .active {
+              color: black;
+              //   font-weight: 400;
+              text-decoration: underline;
+              text-underline-offset: 3px;
+            }
+          }
+        }
+      }
+      .myBoardBtnBox {
+        height: 400px;
+        .goBoard,
+        .goPost {
+          height: 50px;
+          line-height: 50px;
+          background-color: #fcf8f2;
+          font-size: 0.7rem;
+          text-align: center;
+          padding: 0 20px;
+          &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+          }
+        }
+        .nowPage {
+          background-color: #f0e3d1;
+        }
+      }
     }
   }
 }

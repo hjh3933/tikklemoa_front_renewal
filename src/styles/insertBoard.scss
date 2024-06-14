@@ -20,6 +20,7 @@
       border: 1px solid black;
       padding: 10px 0;
 
+      .recipientBox,
       .titleBox,
       .fileBox,
       .contentBox,
@@ -34,10 +35,14 @@
           width: 10%;
         }
 
-        input,
+        .input,
         textarea,
         .imgBox {
           width: 90%;
+        }
+
+        .recipientInput {
+          width: 60%;
         }
 
         input {
@@ -51,8 +56,8 @@
       }
       .error {
         font-size: 0.7rem;
-        width: 90%;
-        margin-left: auto;
+        color: rgb(255, 0, 0);
+        margin-left: 10px;
       }
       .existingImgUrls {
         .imgBox {
@@ -93,6 +98,7 @@
       display: flex;
       align-items: center;
       padding: 10px 0;
+      justify-content: center;
 
       div {
         background-color: pink;

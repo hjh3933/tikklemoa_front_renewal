@@ -3,8 +3,9 @@ import "../styles/myBoardContent.scss";
 import axios from "axios";
 import BoardList from "./BoardList";
 import { useLocation, useNavigate } from "react-router-dom";
+import PostList from "./PostList";
 
-const MyBoardContent = ({ setToggle2 }) => {
+const MyPostContent = ({ setToggle2 }) => {
   // 현재 페이지 가져오기
   const location = useLocation();
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ const MyBoardContent = ({ setToggle2 }) => {
   const page = parseInt(queryParams.get("page")) || 1;
 
   // state
-  const [myBoardType, setMyBoardType] = useState("insert"); // insert or comment or likes
+  const [myPostType, setMyPostType] = useState("recipient"); // sender or recipient
   const [boardList, setBoardList] = useState([]);
   const [currentPage, setCurrentPage] = useState(page);
   const postsPerPage = 5;
@@ -21,14 +22,14 @@ const MyBoardContent = ({ setToggle2 }) => {
     const storedToken = localStorage.getItem("token");
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_API_SERVER}/getMyBoards/${myBoardType}`,
+        `${process.env.REACT_APP_API_SERVER}/getPosts?type=${myPostType}`,
         {
           headers: {
             Authorization: `Bearer ${storedToken}`,
           },
         }
       );
-      // console.log(res.data);
+      console.log(res.data);
       setBoardList(res.data);
     } catch (error) {
       if (error.response && error.response.status === 403) {
@@ -45,7 +46,7 @@ const MyBoardContent = ({ setToggle2 }) => {
 
   useEffect(() => {
     getBoardList();
-  }, [myBoardType]);
+  }, [myPostType]);
 
   useEffect(() => {
     setCurrentPage(page);
@@ -70,29 +71,23 @@ const MyBoardContent = ({ setToggle2 }) => {
       <div className="myBoardBox">
         <div className="myContent_header">
           <div
-            className={`header ${myBoardType === "insert" ? "active" : ""}`}
-            onClick={() => setMyBoardType("insert")}
+            className={`header ${myPostType === "recipient" ? "active" : ""}`}
+            onClick={() => setMyPostType("recipient")}
           >
-            내 글
+            수신함
           </div>
           <div
-            className={`header ${myBoardType === "comment" ? "active" : ""}`}
-            onClick={() => setMyBoardType("comment")}
+            className={`header ${myPostType === "sender" ? "active" : ""}`}
+            onClick={() => setMyPostType("sender")}
           >
-            내 댓글
-          </div>
-          <div
-            className={`header ${myBoardType === "likes" ? "active" : ""}`}
-            onClick={() => setMyBoardType("likes")}
-          >
-            좋아요
+            발신함
           </div>
         </div>
         <div className="boardListBox">
           {currentPosts.length === 0 ? (
-            <div className="noSearchData">게시글이 없습니다</div>
+            <div className="noSearchData">쪽지가 없습니다</div>
           ) : (
-            currentPosts.map((board) => <BoardList key={board.id} board={board} />)
+            currentPosts.map((post) => <PostList key={post.id} post={post} />)
           )}
         </div>
         <div className="page">
@@ -110,10 +105,10 @@ const MyBoardContent = ({ setToggle2 }) => {
         </div>
       </div>
       <div className="myBoardBtnBox">
-        <div className="goBoard nowPage" onClick={() => setToggle2(true)}>
+        <div className="goBoard" onClick={() => setToggle2(true)}>
           게시글
         </div>
-        <div className="goPost" onClick={() => setToggle2(false)}>
+        <div className="goPost nowPage" onClick={() => setToggle2(false)}>
           쪽지
         </div>
       </div>
@@ -121,4 +116,4 @@ const MyBoardContent = ({ setToggle2 }) => {
   );
 };
 
-export default MyBoardContent;
+export default MyPostContent;

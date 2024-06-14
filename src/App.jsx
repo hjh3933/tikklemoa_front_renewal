@@ -6,6 +6,7 @@ import Mypage from "./pages/Mypage";
 import MyCalendar from "./pages/MyCalendar";
 import InsertBoard from "./pages/InsertBoard";
 import BoardDetail from "./pages/BoardDetail";
+import InsertPost from "./pages/InsertPost";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/calendar" element={<MyCalendar />}></Route>
           <Route path="/profile" element={<Mypage />}></Route>
           <Route path="/insertBoard" element={<InsertBoard />}></Route>
+          <Route path="/insertPost" element={<InsertPost />}></Route>
           <Route path="/boardDetail" element={<BoardDetail />}></Route>
         </Routes>
       </div>
