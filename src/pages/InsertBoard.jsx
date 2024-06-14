@@ -57,6 +57,11 @@ const InsertBoard = () => {
   };
 
   const handleSubmit = async () => {
+    if (!title.trim() || !content.trim()) {
+      alert("제목과 내용을 모두 입력해 주세요.");
+      return;
+    }
+
     const formData = new FormData();
     const currentDateTime = getCurrentDateTime();
 
@@ -110,6 +115,10 @@ const InsertBoard = () => {
     }
   };
 
+  const handleCancel = () => {
+    navigate(-1);
+  };
+
   return (
     <>
       <Header />
@@ -148,6 +157,7 @@ const InsertBoard = () => {
           </div>
           <div className="btnBox">
             <div onClick={handleSubmit}>{type === "update" ? "수정" : "작성"}</div>
+            <div onClick={handleCancel}>취소</div>
           </div>
         </div>
       </div>

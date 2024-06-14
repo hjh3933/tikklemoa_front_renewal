@@ -82,22 +82,41 @@
         display: flex;
         align-items: center;
         padding: 10px 0;
+        position: relative;
+
+        .centerBox {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex: 1;
+        }
+
+        .logout {
+          position: absolute;
+          right: 0;
+          color: gray;
+          cursor: pointer;
+        }
+
         i {
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        .move {
+          margin-right: 10px;
+          margin-left: 10px;
+        }
+        .btn {
+          background-color: pink;
           &:hover {
             cursor: pointer;
           }
         }
         div,
         a {
-          background-color: pink;
           padding: 5px 15px;
           border-radius: 5px;
-          &:first-of-type {
-            margin-right: 10px;
-          }
-          &:hover {
-            cursor: pointer;
-          }
         }
       }
     }

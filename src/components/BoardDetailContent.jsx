@@ -123,6 +123,10 @@ const BoardDetailContent = ({ boardDetails }) => {
     }
   };
 
+  const handleCancel = () => {
+    navigate(-1);
+  };
+
   return (
     <div className="BoardDetailContent">
       {modalSrc && <ImgModal src={modalSrc} alt="Modal Image" onClose={closeModal} />}
@@ -159,27 +163,44 @@ const BoardDetailContent = ({ boardDetails }) => {
       </div>
       {nickname == loginNickName ? (
         <div className="btnBox">
-          <Link
-            to={{
-              pathname: "/insertBoard",
-              search: "?type=update",
-            }}
-            state={{ boardDetails: boardDetails }}
+          <div className="centerBox">
+            <Link
+              to={{
+                pathname: "/insertBoard",
+                search: "?type=update",
+              }}
+              state={{ boardDetails: boardDetails }}
+              className="btn move"
+            >
+              수정
+            </Link>
+            <div onClick={deleteBoard} className="btn">
+              삭제
+            </div>
+          </div>
+          <i
+            className="material-icons exit"
+            style={{ color: "gray", cursor: "pointer" }}
+            onClick={handleCancel}
           >
-            수정
-          </Link>
-          <div onClick={deleteBoard}>삭제</div>
+            logout
+          </i>
         </div>
       ) : (
         <div className="btnBox">
-          <i
-            className="material-icons"
-            style={{ color: isLiked ? "red" : "lightgray", cursor: "pointer" }}
-            onClick={handleLikeClick}
-          >
-            favorite
+          <div className="centerBox">
+            <i
+              className="material-icons"
+              style={{ color: isLiked ? "red" : "lightgray", cursor: "pointer" }}
+              onClick={handleLikeClick}
+            >
+              favorite
+            </i>
+            <span>{currentLikesCount}</span>
+          </div>
+          <i className="material-icons logout" onClick={handleCancel}>
+            logout
           </i>
-          <span>{currentLikesCount}</span>
         </div>
       )}
     </div>
