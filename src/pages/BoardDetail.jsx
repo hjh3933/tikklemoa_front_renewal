@@ -15,6 +15,8 @@ const BoardDetail = () => {
       alert("로그인 회원만 이용할 수 있습니다");
       navigate(`/login`);
     }
+    // 페이지 로드 시 스크롤을 맨 위로 설정
+    window.scrollTo(0, 0);
   }, [navigate]);
 
   const location = useLocation();

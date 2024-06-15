@@ -44,3 +44,29 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .IndexPage {
+    flex: 1;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 200px);
+    overflow: auto;
+
+    .indexContentBox {
+      min-width: 100%;
+      flex-direction: column;
+      gap: 20px;
+      padding: 10px;
+
+      .box {
+        width: 100%;
+        height: auto;
+        padding: 20px;
+      }
+    }
+  }
+}

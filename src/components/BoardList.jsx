@@ -27,17 +27,21 @@ const BoardList = ({ board }) => {
 
   return (
     <Link to={`/boardDetail?boardId=${board.id}`} className="BoardList">
-      <div className="listContent">{board.title}</div>
-      <div className="user listContent">
-        <div>{board.nickname}</div>
-        <div>
-          <img src={badgeUrl} alt="badge_img" />
+      <div className="userAndTitle">
+        <div className="listContent title">{board.title}</div>
+        <div className="user listContent">
+          <div>{board.nickname}</div>
+          <div>
+            <img src={badgeUrl} alt="badge_img" />
+          </div>
         </div>
       </div>
-      <div className="dateInfo listContent">{date}</div>
-      <div className="likes listContent">
-        <i className="material-icons">favorite</i>
-        <div>{likes}</div>
+      <div className="dateAndLikes">
+        <div className="dateInfo listContent">{date}</div>
+        <div className="likes listContent">
+          <i className="material-icons">favorite</i>
+          <div>{likes}</div>
+        </div>
       </div>
     </Link>
   );

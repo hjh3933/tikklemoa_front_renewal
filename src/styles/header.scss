@@ -49,3 +49,74 @@
     }
   }
 }
+@media (max-width: 768px) {
+  .headerBox {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    padding: 10px 0;
+    height: 100px;
+    position: fixed;
+
+    .logoBox {
+      width: 100%;
+      text-align: center;
+      line-height: normal;
+
+      .logo {
+        margin-left: 0;
+        font-size: 1.2rem;
+      }
+    }
+
+    .navBox {
+      width: 100%;
+      justify-content: center;
+      line-height: normal;
+      margin-top: 10px;
+
+      .profileImg {
+        width: 25px;
+        height: 25px;
+        margin-right: 5px;
+      }
+
+      .profile {
+        font-weight: 600;
+        display: inline; /* Show the nickname */
+        margin-right: 10px; /* Adjust spacing */
+      }
+
+      a,
+      div {
+        margin-right: 15px;
+        font-size: 0.8rem;
+      }
+    }
+  }
+
+  .IndexPage {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    height: calc(100vh - 100px);
+
+    .indexContentBox {
+      min-width: 100%;
+      flex-direction: column;
+      gap: 20px;
+      padding: 10px;
+      white-space: nowrap;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+
+      .box {
+        width: 100%;
+        height: auto;
+        padding: 20px;
+        display: inline-block;
+        white-space: normal;
+        scroll-snap-align: start;
+      }
+    }
+  }
+}

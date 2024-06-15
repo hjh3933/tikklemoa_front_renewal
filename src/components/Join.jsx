@@ -14,6 +14,8 @@ const Join = ({ setToggle }) => {
   // ref
   const idCheckRef = useRef();
   const pwCheckRef = useRef();
+  const idFalseRef = useRef();
+  const pwFalseRef = useRef();
 
   // 정규식
   const validateUserid = (userid) => {
@@ -43,6 +45,8 @@ const Join = ({ setToggle }) => {
         alert(res.data.msg);
         // 체크 모양 변경
         setNameCheckVal(true);
+      } else {
+        alert(res.data.msg);
       }
     } catch (error) {
       console.error("Error checking name:", error);
@@ -71,6 +75,8 @@ const Join = ({ setToggle }) => {
         alert(res.data.msg);
         // 체크 모양 변경
         setUseridCheckVal(true);
+      } else {
+        alert(res.data.msg);
       }
     } catch (error) {
       console.error("Error checking id:", error);
@@ -89,9 +95,11 @@ const Join = ({ setToggle }) => {
     setUserid(newValue);
     if (!validateUserid(newValue)) {
       idCheckRef.current.textContent = "아이디는 6글자 이상의 문자와 숫자 혼합 형식이어야합니다";
+      idFalseRef.current.textContent = "아";
       return;
     } else {
       idCheckRef.current.textContent = "";
+      idFalseRef.current.textContent = "";
     }
   };
   const handleChangePw = (e) => {
@@ -100,10 +108,12 @@ const Join = ({ setToggle }) => {
     setUserpw(newValue);
     if (!validateUserpw(newValue)) {
       pwCheckRef.current.textContent = "비밀번호는 6글자 이상의 문자와 숫자 혼합 형식이어야합니다";
+      pwFalseRef.current.textContent = "비";
       setUserpwCheckVal(false);
       return;
     } else {
       pwCheckRef.current.textContent = "";
+      pwFalseRef.current.textContent = "";
       setUserpwCheckVal(true);
     }
   };
@@ -149,11 +159,11 @@ const Join = ({ setToggle }) => {
             </div>
             <div className="idInput">
               <div>ID</div>
-              <div className="id_msg"></div>
+              <p className="id_msg falseMsg" ref={idFalseRef}></p>
             </div>
             <div className="pwInput">
               <div>PW</div>
-              <div className="pw_msg"></div>
+              <p className="pw_msg falseMsg" ref={pwFalseRef}></p>
             </div>
           </div>
           <div className="rightBox">
