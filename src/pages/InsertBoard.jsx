@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "../styles/insertBoard.scss";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -12,6 +12,7 @@ const InsertBoard = () => {
   const type = queryParams.get("type");
   const { state } = location;
   const boardDetails = state?.boardDetails;
+  const fileInputRef = useRef(null);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -24,25 +25,39 @@ const InsertBoard = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [files, setFiles] = useState([]);
+  const [allImages, setAllImages] = useState([]);
   const [existingImgUrls, setExistingImgUrls] = useState([]);
   const [imgUrlsToRemove, setImgUrlsToRemove] = useState([]);
 
   useEffect(() => {
     if (boardDetails) {
-      console.log("boardDetails:", boardDetails);
       setTitle(boardDetails.title);
       setContent(boardDetails.content);
       setExistingImgUrls(boardDetails.imgUrls || []);
+      setAllImages(boardDetails.imgUrls || []);
     }
   }, [boardDetails]);
 
   const handleFileChange = (e) => {
-    setFiles(Array.from(e.target.files));
+    const newFiles = Array.from(e.target.files);
+    const newFilePreviews = newFiles.map((file) => URL.createObjectURL(file));
+    if (existingImgUrls.length + files.length + newFiles.length > 5) {
+      alert("이미지는 최대 5장까지 업로드할 수 있습니다.");
+      return;
+    }
+    setFiles((prevFiles) => [...prevFiles, ...newFiles]);
+    setAllImages((prevImages) => [...prevImages, ...newFilePreviews]);
   };
 
   const handleRemoveImgUrl = (url) => {
-    setExistingImgUrls(existingImgUrls.filter((imgUrl) => imgUrl !== url));
-    setImgUrlsToRemove([...imgUrlsToRemove, url]);
+    if (existingImgUrls.includes(url)) {
+      setExistingImgUrls(existingImgUrls.filter((imgUrl) => imgUrl !== url));
+      setImgUrlsToRemove([...imgUrlsToRemove, url]);
+    } else {
+      const index = allImages.indexOf(url);
+      setFiles(files.filter((_, i) => i !== index - existingImgUrls.length));
+    }
+    setAllImages(allImages.filter((imgUrl) => imgUrl !== url));
   };
 
   const getCurrentDateTime = () => {
@@ -59,6 +74,11 @@ const InsertBoard = () => {
   const handleSubmit = async () => {
     if (!title.trim() || !content.trim()) {
       alert("제목과 내용을 모두 입력해 주세요.");
+      return;
+    }
+
+    if (existingImgUrls.length + files.length > 5) {
+      alert("이미지는 최대 5장까지 업로드할 수 있습니다.");
       return;
     }
 
@@ -100,7 +120,7 @@ const InsertBoard = () => {
 
       if (res.data.result) {
         alert(type === "update" ? "게시글 수정이 완료되었습니다" : "게시글 작성이 완료되었습니다");
-        navigate("/?page=1");
+        navigate("/community?page=1");
       }
     } catch (error) {
       if (error.response && error.response.status === 403) {
@@ -119,6 +139,10 @@ const InsertBoard = () => {
     navigate(-1);
   };
 
+  const triggerFileInput = () => {
+    fileInputRef.current.click();
+  };
+
   return (
     <>
       <Header />
@@ -135,25 +159,30 @@ const InsertBoard = () => {
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
-            {type == "update" && (
-              <div className="existingImgUrls">
-                <div className="ten">이미지</div>
-                <div className="imgBox">
-                  {existingImgUrls &&
-                    existingImgUrls.map((url, index) => (
-                      <div key={index} className="imgContainer">
-                        <img src={url} alt={`img${index}`} className="existingImg" />
-                        <button type="button" onClick={() => handleRemoveImgUrl(url)}>
-                          X
-                        </button>
-                      </div>
-                    ))}
+            <div className="existingImgUrls">
+              <div className="ten">이미지</div>
+              <div className="imgBox">
+                {allImages &&
+                  allImages.map((url, index) => (
+                    <div key={index} className="imgContainer">
+                      <img src={url} alt={`img${index}`} className="existingImg" />
+                      <button type="button" onClick={() => handleRemoveImgUrl(url)}>
+                        X
+                      </button>
+                    </div>
+                  ))}
+                <div className="imgContainer addImgContainer" onClick={triggerFileInput}>
+                  <i className="material-icons addIcon">add_photo_alternate</i>
                 </div>
+                <input
+                  type="file"
+                  className="input"
+                  multiple
+                  onChange={handleFileChange}
+                  ref={fileInputRef}
+                  style={{ display: "none" }}
+                />
               </div>
-            )}
-            <div className="fileBox">
-              <div className="file ten">첨부파일</div>
-              <input type="file" className="input" multiple onChange={handleFileChange} />
             </div>
             <div className="contentBox">
               <div className="content ten">글내용</div>

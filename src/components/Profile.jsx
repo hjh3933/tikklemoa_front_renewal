@@ -39,15 +39,8 @@ const Profile = ({ setToggle }) => {
         setImg(res.data.img);
       }
     } catch (error) {
-      if (error.response && error.response.status === 403) {
-        localStorage.clear();
-        alert("로그인이 만료되었습니다");
-        navigate("/");
-        window.location.reload();
-      } else {
-        console.error("프로필을 불러오는 중 오류 발생:", error);
-        alert("프로필을 불러오는 중 오류가 발생했습니다.");
-      }
+      console.error("프로필을 불러오는 중 오류 발생:", error);
+      alert("프로필을 불러오는 중 오류가 발생했습니다.");
     }
   };
 

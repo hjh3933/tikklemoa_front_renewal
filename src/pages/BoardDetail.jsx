@@ -48,20 +48,16 @@ const BoardDetail = () => {
       setBoardDetails(res.data);
       setCommentList(result.data);
     } catch (error) {
-      if (error.response && error.response.status === 403) {
-        localStorage.clear();
-        alert("로그인이 만료되었습니다");
-        navigate("/");
-        window.location.reload();
-      } else {
-        console.error("게시글 정보를 불러오는 중 오류 발생:", error);
-        alert("게시글 정보를 불러오는 중 오류가 발생했습니다.");
-      }
+      console.error("게시글 정보를 불러오는 중 오류 발생:", error);
+      alert("게시글 정보를 불러오는 중 오류가 발생했습니다.");
     }
   };
 
   useEffect(() => {
-    getDetails();
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+      getDetails();
+    }
   }, []);
 
   return (

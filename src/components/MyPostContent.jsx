@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "../styles/myBoardContent.scss";
 import axios from "axios";
 import BoardList from "./BoardList";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import PostList from "./PostList";
 
 const MyPostContent = ({ setToggle2 }) => {
@@ -32,15 +32,8 @@ const MyPostContent = ({ setToggle2 }) => {
       console.log(res.data);
       setBoardList(res.data);
     } catch (error) {
-      if (error.response && error.response.status === 403) {
-        localStorage.clear();
-        alert("로그인이 만료되었습니다");
-        navigate("/");
-        window.location.reload();
-      } else {
-        console.error("게시글을 불러오는 중 오류 발생:", error);
-        alert("게시글을 불러오는 중 오류가 발생했습니다.");
-      }
+      console.error("쪽지목록을 불러오는 중 오류 발생:", error);
+      alert("쪽지목록을 불러오는 중 오류가 발생했습니다.");
     }
   };
 
@@ -69,6 +62,9 @@ const MyPostContent = ({ setToggle2 }) => {
   return (
     <div className="MyBoardContent">
       <div className="myBoardBox">
+        <div className="insertPostBox">
+          <Link to={"/insertPost"}>쪽지전송</Link>
+        </div>
         <div className="myContent_header">
           <div
             className={`header ${myPostType === "recipient" ? "active" : ""}`}

@@ -9,8 +9,27 @@
   position: fixed;
   bottom: 0px;
   width: 100%;
-  .content {
-    line-height: 100px;
-    text-align: center;
+  .navBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    div,
+    a {
+      // border: 1px solid black;
+      color: rgb(87, 87, 87);
+    }
+    .contentOne,
+    .contentTwo,
+    .contentThree {
+      margin: 0 10px;
+      div {
+        font-size: 0.7rem;
+      }
+      .title {
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+    }
   }
 }

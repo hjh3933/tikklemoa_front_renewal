@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import Header from "../components/Header";
@@ -8,8 +8,8 @@ const InsertPost = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const type = queryParams.get("type"); // type을 받아옴
-  const { state } = location;
+  const recipientParam = queryParams.get("recipient");
+  const fileInputRef = useRef(null);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -19,14 +19,27 @@ const InsertPost = () => {
     }
   }, [navigate]);
 
-  const [recipient, setRecipient] = useState("");
+  const [recipient, setRecipient] = useState(recipientParam || "");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [files, setFiles] = useState([]);
+  const [filePreviews, setFilePreviews] = useState([]);
   const [recipientExists, setRecipientExists] = useState(true);
 
   const handleFileChange = (e) => {
-    setFiles(Array.from(e.target.files));
+    const newFiles = Array.from(e.target.files);
+    if (files.length + newFiles.length > 5) {
+      alert("파일은 최대 5개까지 업로드할 수 있습니다.");
+      return;
+    }
+    const newFilePreviews = newFiles.map((file) => URL.createObjectURL(file));
+    setFiles((prevFiles) => [...prevFiles, ...newFiles]);
+    setFilePreviews((prevPreviews) => [...prevPreviews, ...newFilePreviews]);
+  };
+
+  const handleRemoveFile = (index) => {
+    setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
+    setFilePreviews((prevPreviews) => prevPreviews.filter((_, i) => i !== index));
   };
 
   const checkRecipientExists = async (recipient) => {
@@ -121,16 +134,14 @@ const InsertPost = () => {
 
       if (res.data.result) {
         alert("쪽지 작성이 완료되었습니다");
-        navigate("/?page=1");
+        navigate(-1);
       }
     } catch (error) {
       if (error.response && error.response.status === 403) {
-        // localStorage.clear();
-        // alert("로그인이 만료되었습니다");
-        // navigate("/");
-        // window.location.reload();
-        console.error("쪽지 작성 중 오류 발생:", error);
-        alert("쪽지 작성 중 오류가 발생했습니다.");
+        localStorage.clear();
+        alert("로그인이 만료되었습니다");
+        navigate("/");
+        window.location.reload();
       } else {
         console.error("쪽지 작성 중 오류 발생:", error);
         alert("쪽지 작성 중 오류가 발생했습니다.");
@@ -140,6 +151,10 @@ const InsertPost = () => {
 
   const handleCancel = () => {
     navigate(-1);
+  };
+
+  const triggerFileInput = () => {
+    fileInputRef.current.click();
   };
 
   return (
@@ -172,7 +187,27 @@ const InsertPost = () => {
             </div>
             <div className="fileBox">
               <div className="file ten">첨부파일</div>
-              <input type="file" className="input" multiple onChange={handleFileChange} />
+              <div className="imgBox">
+                {filePreviews.map((preview, index) => (
+                  <div key={index} className="imgContainer">
+                    <img src={preview} alt={`file${index}`} className="existingImg" />
+                    <button type="button" onClick={() => handleRemoveFile(index)}>
+                      X
+                    </button>
+                  </div>
+                ))}
+                <div className="imgContainer addImgContainer" onClick={triggerFileInput}>
+                  <i className="material-icons addIcon">add_photo_alternate</i>
+                </div>
+                <input
+                  type="file"
+                  className="input"
+                  multiple
+                  onChange={handleFileChange}
+                  ref={fileInputRef}
+                  style={{ display: "none" }}
+                />
+              </div>
             </div>
             <div className="contentBox">
               <div className="content ten">글내용</div>

@@ -48,6 +48,19 @@
             display: flex;
             justify-content: left;
             align-items: center;
+            .arrow {
+              margin: 0 10px;
+            }
+            .postNick {
+              font-size: 0.7rem;
+              // color: red;
+              // margin-top: auto;
+              margin-left: 10px;
+              // margin-bottom: 10px;
+              border-radius: 5px;
+              background-color: rgb(255, 210, 126);
+              padding: 2px;
+            }
             div {
               .profileImg {
                 width: 30px;

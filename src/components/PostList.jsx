@@ -6,6 +6,7 @@ const PostList = ({ post }) => {
   // 관리필요한 데이터 badge, date
   const [badgeUrl, setBadgeUrl] = useState("");
   const [date, setDate] = useState("");
+  const nickname = localStorage.getItem("nickname");
 
   useEffect(() => {
     const badgeUrl = `/images/badge${post.badge}.png`;
@@ -14,7 +15,7 @@ const PostList = ({ post }) => {
   }, []);
 
   return (
-    <Link to={`/boardDetail?boardId=${post.id}`} className="BoardList">
+    <Link to={`/postDetail?postId=${post.id}`} className="BoardList">
       <div className="listContent">{post.title}</div>
       <div className="user listContent">
         <div>{post.nickname}</div>

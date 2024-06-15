@@ -122,10 +122,13 @@ const BoardCommentContent = ({ commentList, boardId, getDetails }) => {
     }
   };
 
+  // 댓글을 날짜순으로 오름차순 정렬
+  const sortedComments = [...commentList].sort((a, b) => new Date(a.date) - new Date(b.date));
+
   return (
     <div className="BoardCommentContent">
       <div className="comment-list" ref={commentListRef}>
-        {commentList.map((comment) => {
+        {sortedComments.map((comment) => {
           const badgeUrl = `/images/badge${comment.badge}.png`;
           const profileImgUrl =
             comment.img === "default.img"

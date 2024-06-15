@@ -39,15 +39,8 @@ const CalendarStatsContent = ({ setToggle }) => {
       console.log(res.data);
       setMonthlyStats(res.data);
     } catch (error) {
-      if (error.response && error.response.status === 403) {
-        localStorage.clear();
-        alert("로그인이 만료되었습니다");
-        navigate("/");
-        window.location.reload();
-      } else {
-        console.error("월별통계를 불러오는 중 오류 발생:", error);
-        alert("월별통계를 불러오는 중 오류가 발생했습니다.");
-      }
+      console.error("월별통계를 불러오는 중 오류 발생:", error);
+      alert("월별통계를 불러오는 중 오류가 발생했습니다.");
     }
   };
 
@@ -66,15 +59,8 @@ const CalendarStatsContent = ({ setToggle }) => {
       setNextBadgeUrl(badgeUrl);
       setNextBadge(res.data);
     } catch (error) {
-      if (error.response && error.response.status === 403) {
-        localStorage.clear();
-        alert("로그인이 만료되었습니다");
-        navigate("/");
-        window.location.reload();
-      } else {
-        console.error("뱃지 예상을 불러오는 중 오류 발생:", error);
-        alert("뱃지 예상을 불러오는 중 오류가 발생했습니다.");
-      }
+      console.error("뱃지 예상을 불러오는 중 오류 발생:", error);
+      alert("뱃지 예상을 불러오는 중 오류가 발생했습니다.");
     }
   };
 
@@ -194,7 +180,6 @@ const CalendarStatsContent = ({ setToggle }) => {
               <div>
                 <FeedbackComponent level={nextBadge.nextBadge} />
               </div>
-              {/* <div>{consumptionFeedback[nextBadge.nextBadge]}</div> */}
               <div className="imgBox">
                 <img src={nextBadgeUrl} alt="badge_image" />
               </div>

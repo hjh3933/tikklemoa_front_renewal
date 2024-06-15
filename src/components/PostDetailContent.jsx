@@ -4,19 +4,17 @@ import "../styles/boardDetail.scss";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import ImgModal from "./ImgModal";
 
-const BoardDetailContent = ({ boardDetails }) => {
+const PostDetailContent = ({ postDetails }) => {
   const [badgeUrl, setBadgeUrl] = useState("");
   const [profileImg, setProfileImg] = useState("");
   const [dateStr, setDateStr] = useState("");
   const [modalSrc, setModalSrc] = useState(null);
   const [loginNickName, setLoginNickName] = useState("");
-  const [isLiked, setIsLiked] = useState(false);
-  const [currentLikesCount, setCurrentLikesCount] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (boardDetails) {
-      const { badge, userImg } = boardDetails;
+    if (postDetails) {
+      const { badge, userImg } = postDetails;
       const tokenNick = localStorage.getItem("nickname");
 
       const profileImgUrl =
@@ -28,30 +26,28 @@ const BoardDetailContent = ({ boardDetails }) => {
       setBadgeUrl(badgeImageUrl);
       setDateStr(date.replace(".0", ""));
       setLoginNickName(tokenNick);
-      setIsLiked(likeOrNot);
-      setCurrentLikesCount(likesCount);
       //console.log("id비교>>", nickname, loginNickName);
     }
-  }, [boardDetails]);
+  }, [postDetails]);
 
-  if (!boardDetails) {
+  if (!postDetails) {
     return <div>Loading...</div>;
   }
 
   const {
+    recipient,
     badge,
+    read,
     content,
     date,
-    id,
+    id, // postid
     img,
     imgUrls,
-    likeOrNot,
-    likesCount,
     nickname,
     title,
     userImg,
     userid, // user의 index id를 의미함
-  } = boardDetails;
+  } = postDetails;
 
   const openModal = (src) => {
     setModalSrc(src);
@@ -61,21 +57,26 @@ const BoardDetailContent = ({ boardDetails }) => {
     setModalSrc(null);
   };
 
-  const handleLikeClick = async () => {
+  const removePost = async () => {
     try {
+      /* eslint-disable no-restricted-globals */
+      const check = confirm("쪽지를 삭제하시겠습니까?");
+      /* eslint-disable no-restricted-globals */
+      if (!check) return;
       const token = localStorage.getItem("token");
       const data = {
         id: id,
       };
-      const res = await axios.post(`${process.env.REACT_APP_API_SERVER}/clickLikes`, data, {
+      const res = await axios.patch(`${process.env.REACT_APP_API_SERVER}/removePost`, data, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      // 요청이 성공하면 isLiked을 반전시키고, 좋아요 수를 증가 또는 감소시킴
       if (res.data.result) {
-        setIsLiked(!isLiked);
-        setCurrentLikesCount(isLiked ? currentLikesCount - 1 : currentLikesCount + 1);
-        console.log(res.data);
+        alert(res.data.msg);
+        navigate(-1);
+        // window.location.reload();
+      } else {
+        alert(res.data.msg);
       }
     } catch (error) {
       if (error.response && error.response.status === 403) {
@@ -88,26 +89,25 @@ const BoardDetailContent = ({ boardDetails }) => {
       }
     }
   };
-
-  const deleteBoard = async () => {
+  const deletePost = async () => {
     try {
       /* eslint-disable no-restricted-globals */
-      const check = confirm("게시글을 정말 삭제하시겠습니까?");
+      const check = confirm("전송을 취소하시겠습니까?");
       /* eslint-disable no-restricted-globals */
       if (!check) return;
       const token = localStorage.getItem("token");
       const data = {
         id: id,
       };
-      const res = await axios.delete(`${process.env.REACT_APP_API_SERVER}/deleteBoard`, {
+      const res = await axios.delete(`${process.env.REACT_APP_API_SERVER}/deletePost`, {
         headers: { Authorization: `Bearer ${token}` },
         data: data,
       });
 
       if (res.data.result) {
         alert(res.data.msg);
-        navigate("/community?page=1");
-        window.location.reload();
+        navigate(-1);
+        // window.location.reload();
       } else {
         alert(res.data.msg);
       }
@@ -127,6 +127,10 @@ const BoardDetailContent = ({ boardDetails }) => {
     navigate(-1);
   };
 
+  const handleReply = () => {
+    navigate(`/insertPost?recipient=${nickname}`);
+  };
+
   return (
     <div className="BoardDetailContent">
       {modalSrc && <ImgModal src={modalSrc} alt="Modal Image" onClose={closeModal} />}
@@ -140,6 +144,9 @@ const BoardDetailContent = ({ boardDetails }) => {
             <div>
               <img src={badgeUrl} alt="badge" className="badgeImg" />
             </div>
+            <i className="material-icons arrow">arrow_right_alt</i>
+            <div>{recipient}</div>
+            <div className="postNick">{nickname == loginNickName ? "발신" : "수신"}</div>
           </div>
           <div className="date">{dateStr}</div>
         </div>
@@ -164,17 +171,12 @@ const BoardDetailContent = ({ boardDetails }) => {
       {nickname == loginNickName ? (
         <div className="btnBox">
           <div className="centerBox">
-            <Link
-              to={{
-                pathname: "/insertBoard",
-                search: "?type=update",
-              }}
-              state={{ boardDetails: boardDetails }}
-              className="btn move"
-            >
-              수정
-            </Link>
-            <div onClick={deleteBoard} className="btn">
+            {!read && (
+              <div className="btn move" onClick={deletePost}>
+                전송취소
+              </div>
+            )}
+            <div onClick={removePost} className="btn">
               삭제
             </div>
           </div>
@@ -189,14 +191,12 @@ const BoardDetailContent = ({ boardDetails }) => {
       ) : (
         <div className="btnBox">
           <div className="centerBox">
-            <i
-              className="material-icons"
-              style={{ color: isLiked ? "red" : "lightgray", cursor: "pointer" }}
-              onClick={handleLikeClick}
-            >
-              favorite
-            </i>
-            <span>{currentLikesCount}</span>
+            <div className="btn move" onClick={handleReply}>
+              답장
+            </div>
+            <div onClick={removePost} className="btn">
+              삭제
+            </div>
           </div>
           <i className="material-icons logout" onClick={handleCancel}>
             logout
@@ -207,4 +207,4 @@ const BoardDetailContent = ({ boardDetails }) => {
   );
 };
 
-export default BoardDetailContent;
+export default PostDetailContent;

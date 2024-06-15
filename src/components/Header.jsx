@@ -43,7 +43,7 @@ const Header = () => {
     localStorage.clear();
     alert("로그아웃 되었습니다.");
     // + 메인 페이지로 이동
-    navigate("/?page=1");
+    navigate("/");
     window.location.reload();
   };
   return (
@@ -54,7 +54,6 @@ const Header = () => {
           <Link
             to={{
               pathname: "/",
-              search: "?page=1",
             }}
             className="logo"
           >
@@ -64,7 +63,7 @@ const Header = () => {
         <div className="navBox">
           <Link
             to={{
-              pathname: "/",
+              pathname: "/community",
               search: "?page=1",
             }}
             className="community"

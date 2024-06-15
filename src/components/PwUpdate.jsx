@@ -133,7 +133,7 @@ const PwUpdate = ({ setToggle }) => {
             localStorage.clear();
             alert(res.data.msg);
             // + 메인 페이지로 이동
-            navigate("/?page=1");
+            navigate("/");
             window.location.reload();
           } else {
             alert(res.data.msg);
