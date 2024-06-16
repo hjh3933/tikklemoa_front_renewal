@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import "../styles/myBoardContent.scss";
 import axios from "axios";
 import BoardList from "./BoardList";
 import { Link, useLocation, useNavigate } from "react-router-dom";

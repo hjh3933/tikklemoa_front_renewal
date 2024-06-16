@@ -1,10 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/login.scss";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 
 const Login = ({ setToggle }) => {
   const navigate = useNavigate();
+  const [visible, setVisible] = useState(false);
   // ref
   const useridRef = useRef();
   const userpwRef = useRef();
@@ -48,48 +49,84 @@ const Login = ({ setToggle }) => {
     }
   };
 
+  const testLogin = () => {
+    useridRef.current.value = "juhee1234";
+    userpwRef.current.value = "juhee1234";
+    loginUser();
+  };
+
   return (
-    <div className="Login">
-      {/* <h2>Login 폼</h2> */}
-      <div className="loginBox">
-        <div className="inputBox">
-          <div className="leftBox">
-            <div className="idInput">
-              <div>ID</div>
+    <>
+      <div className="Login">
+        {/* <h2>Login 폼</h2> */}
+        <div className="loginBox">
+          <div
+            style={{
+              textAlign: "center",
+              cursor: "pointer",
+              textDecoration: "underline",
+              color: "lightgray",
+            }}
+            onClick={testLogin}
+          >
+            test 계정으로 로그인
+          </div>
+          <div className="inputBox">
+            <div className="leftBox">
+              <div className="idInput">
+                <div>ID</div>
+              </div>
+              <div className="pwInput">
+                <div>PW</div>
+              </div>
             </div>
-            <div className="pwInput">
-              <div>PW</div>
+            <div className="rightBox">
+              <div className="idInput check">
+                <input type="text" name="userid" id="userid" ref={useridRef} />
+                <i className="material-icons pwCheck" style={{ opacity: "0" }}>
+                  {visible ? "visibility" : "visibility_off"}
+                </i>
+              </div>
+              <div className="pwInput check">
+                {visible ? (
+                  <input
+                    type="text"
+                    name="userpw"
+                    id="userpw"
+                    ref={userpwRef}
+                    onKeyDown={handleKeyDown}
+                  />
+                ) : (
+                  <input
+                    type="password"
+                    name="userpw"
+                    id="userpw"
+                    ref={userpwRef}
+                    onKeyDown={handleKeyDown}
+                  />
+                )}
+
+                <i className="material-icons pwCheck" onClick={() => setVisible(!visible)}>
+                  {visible ? "visibility" : "visibility_off"}
+                </i>
+              </div>
             </div>
           </div>
-          <div className="rightBox">
-            <div className="idInput">
-              <input type="text" name="userid" id="userid" ref={useridRef} />
-            </div>
-            <div className="pwInput">
-              <input
-                type="password"
-                name="userpw"
-                id="userpw"
-                ref={userpwRef}
-                onKeyDown={handleKeyDown}
-              />
-            </div>
+          <div className="loginBtn" onClick={loginUser}>
+            LOGIN
           </div>
-        </div>
-        <div className="loginBtn" onClick={loginUser}>
-          LOGIN
-        </div>
-        <div className="loginOrJoin">
-          <div className="getLogin" onClick={() => setToggle(true)}>
-            로그인
-          </div>
-          <dir>|</dir>
-          <div className="getJoin" onClick={() => setToggle(false)}>
-            회원가입
+          <div className="loginOrJoin">
+            <div className="getLogin" onClick={() => setToggle(true)}>
+              로그인
+            </div>
+            <dir>|</dir>
+            <div className="getJoin" onClick={() => setToggle(false)}>
+              회원가입
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -5,15 +5,18 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useLocation, useNavigate } from "react-router-dom";
 import PostDetailContent from "../components/PostDetailContent";
+import { isTokenExpired } from "../utils/tokenUtils";
 
 const PostDetail = () => {
   const navigate = useNavigate();
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    if (!storedToken) {
-      alert("로그인 회원만 이용할 수 있습니다");
-      navigate(`/login`);
-    }
+    // const token = localStorage.getItem("token");
+    // if (!token || isTokenExpired(token)) {
+    //   localStorage.clear();
+    //   alert("로그인이 만료되었습니다. 다시 로그인해주세요.");
+    //   navigate("/login");
+    // }
+    window.scrollTo(0, 0);
   }, [navigate]);
 
   const location = useLocation();

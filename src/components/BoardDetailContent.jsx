@@ -12,6 +12,7 @@ const BoardDetailContent = ({ boardDetails }) => {
   const [loginNickName, setLoginNickName] = useState("");
   const [isLiked, setIsLiked] = useState(false);
   const [currentLikesCount, setCurrentLikesCount] = useState(0);
+  const [messageVisible, setMessageVisible] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -127,6 +128,10 @@ const BoardDetailContent = ({ boardDetails }) => {
     navigate(-1);
   };
 
+  const handleNicknameClick = () => {
+    setMessageVisible(!messageVisible);
+  };
+
   return (
     <div className="BoardDetailContent">
       {modalSrc && <ImgModal src={modalSrc} alt="Modal Image" onClose={closeModal} />}
@@ -136,7 +141,17 @@ const BoardDetailContent = ({ boardDetails }) => {
             <div>
               <img src={profileImg} alt="profileImg" className="profileImg" />
             </div>
-            <div className="nickname">{nickname}</div>
+            <div className="nickname" onClick={handleNicknameClick} style={{ cursor: "pointer" }}>
+              {nickname}
+            </div>
+            {messageVisible && nickname != loginNickName && (
+              <div
+                className="messageLink"
+                onClick={() => navigate(`/insertPost?recipient=${nickname}`)}
+              >
+                쪽지전송
+              </div>
+            )}
             <div>
               <img src={badgeUrl} alt="badge" className="badgeImg" />
             </div>

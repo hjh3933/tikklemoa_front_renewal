@@ -181,9 +181,13 @@ const CalendarMonth = ({ setSelectedDate, dateData }) => {
       if (priceView) {
         return (
           <div className="tile-content">
-            <div className="total_minus">Total Minus: {totalMinus}</div>
-            <div className="total_plus">Total Plus: {totalPlus}</div>
-            <div className="date_total">Date Total: {dateTotal}</div>
+            <div className="total_minus" style={{ color: "red" }}>
+              -{totalMinus}
+            </div>
+            <div className="total_plus" style={{ color: "blue" }}>
+              +{totalPlus}
+            </div>
+            <div className="date_total"> {dateTotal}</div>
           </div>
         );
       }
@@ -243,8 +247,10 @@ const CalendarMonth = ({ setSelectedDate, dateData }) => {
   return (
     <>
       <div className={`CalendarMonth ${isLoaded ? "loaded" : "loading"}`}>
-        <div className="setting" onClick={() => setIsModalOpen(true)}>
-          <i className="material-icons">settings</i>
+        <div className="setting">
+          <i className="material-icons" onClick={() => setIsModalOpen(true)}>
+            settings
+          </i>
         </div>
         <div className="react_calendar">
           <Calendar

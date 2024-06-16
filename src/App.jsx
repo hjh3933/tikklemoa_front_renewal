@@ -9,21 +9,24 @@ import BoardDetail from "./pages/BoardDetail";
 import InsertPost from "./pages/InsertPost";
 import PostDetail from "./pages/PostDetail";
 import IndexPage from "./pages/IndexPage";
+import AuthRoute from "./components/AuthRoute";
 
 function App() {
   return (
     <Router>
       <div className="App">
         <Routes>
+          {/* 비로그인 + 로그인 접근가능 */}
           <Route path="/community" element={<Commnunity />}></Route>
           <Route path="/login" element={<MainPage />}></Route>
-          <Route path="/calendar" element={<MyCalendar />}></Route>
-          <Route path="/profile" element={<Mypage />}></Route>
-          <Route path="/insertBoard" element={<InsertBoard />}></Route>
-          <Route path="/insertPost" element={<InsertPost />}></Route>
-          <Route path="/boardDetail" element={<BoardDetail />}></Route>
-          <Route path="/postDetail" element={<PostDetail />}></Route>
           <Route path="/" element={<IndexPage />}></Route>
+          {/* 로그인 회원만 접근가능 */}
+          <Route path="/calendar" element={<AuthRoute element={MyCalendar} />} />
+          <Route path="/profile" element={<AuthRoute element={Mypage} />} />
+          <Route path="/insertBoard" element={<AuthRoute element={InsertBoard} />} />
+          <Route path="/insertPost" element={<AuthRoute element={InsertPost} />} />
+          <Route path="/boardDetail" element={<AuthRoute element={BoardDetail} />} />
+          <Route path="/postDetail" element={<AuthRoute element={PostDetail} />} />
         </Routes>
       </div>
     </Router>

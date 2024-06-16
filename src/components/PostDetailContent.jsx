@@ -135,7 +135,7 @@ const PostDetailContent = ({ postDetails }) => {
     <div className="BoardDetailContent">
       {modalSrc && <ImgModal src={modalSrc} alt="Modal Image" onClose={closeModal} />}
       <div className="boardBox">
-        <div className="userBox">
+        <div className="userBox postUserBox">
           <div className="user">
             <div>
               <img src={profileImg} alt="profileImg" className="profileImg" />

@@ -35,7 +35,7 @@
         line-height: 40px;
         border: none;
         border-radius: 10px;
-        width: 100%;
+        width: 80%;
         padding: 0px 10px;
       }
     }
@@ -113,6 +113,12 @@
         width: 80%;
         text-align: left;
         padding: 0 10px;
+
+        .check {
+          i {
+            margin-left: 5px;
+          }
+        }
 
         input {
           width: calc(100% - 20px);

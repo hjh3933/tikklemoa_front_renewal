@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { isTokenExpired } from "../utils/tokenUtils";
 
 const InsertPost = () => {
   const navigate = useNavigate();
@@ -11,13 +12,14 @@ const InsertPost = () => {
   const recipientParam = queryParams.get("recipient");
   const fileInputRef = useRef(null);
 
-  useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    if (!storedToken) {
-      alert("로그인 회원만 이용할 수 있습니다");
-      navigate(`/login`);
-    }
-  }, [navigate]);
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (!token || isTokenExpired(token)) {
+  //     localStorage.clear();
+  //     alert("로그인이 만료되었습니다. 다시 로그인해주세요.");
+  //     navigate("/login");
+  //   }
+  // }, [navigate]);
 
   const [recipient, setRecipient] = useState(recipientParam || "");
   const [title, setTitle] = useState("");

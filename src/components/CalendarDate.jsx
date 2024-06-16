@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import "../styles/calendarSet.scss";
-import "../styles/calendarDate.scss";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import CalendarModal from "./CalendarModal";

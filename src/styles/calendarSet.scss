@@ -12,7 +12,8 @@
 .CalendarSet {
   // flex: 1;
   padding: 20px;
-  height: 100%;
+  // height: 100%;
+  margin: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,6 +59,101 @@
       // border: 1px solid black;
       margin-left: 20px;
       overflow-y: scroll;
+    }
+  }
+}
+// 반응형
+@media (max-width: 768px) {
+  .MyCalendar {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    height: auto;
+  }
+
+  .CalendarSet {
+    padding: 10px;
+
+    .Title {
+      font-size: 1.5rem;
+      display: none;
+    }
+
+    .calendarContentBox {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+
+      .CalBtnBox {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 10px; /* 버튼 아래에 여백 추가 */
+      }
+
+      .CalendarMonth,
+      .CalendarDate {
+        width: 100%;
+        height: auto;
+        margin: 10px 0;
+      }
+    }
+
+    .topControls {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin-bottom: 10px; /* 버튼 아래에 여백 추가 */
+      div {
+        margin: 5px;
+      }
+    }
+  }
+
+  .CalendarDate {
+    .selectedDate {
+      font-size: 1rem;
+    }
+
+    .content_box {
+      .content {
+        flex-wrap: nowrap; /* 요소들이 한 줄에 배치되도록 함 */
+        overflow-x: auto; /* 가로 스크롤 가능하도록 설정 */
+        font-size: 0.8rem; /* 텍스트 크기 줄이기 */
+        div {
+          flex: none; /* 요소들이 줄어들지 않도록 설정 */
+          text-align: center;
+          margin: 0 5px; /* 요소 사이 간격 조절 */
+        }
+      }
+    }
+
+    .plusBox {
+      .plus {
+        .plusIcon {
+          scale: 1.5;
+        }
+      }
+    }
+  }
+
+  .calendarContentBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .CalBtnBox {
+      order: 1; /* CalBtnBox를 첫 번째로 배치 */
+    }
+
+    .Title {
+      order: 2; /* Title을 두 번째로 배치 */
+      margin-bottom: 10px; /* Title 아래에 여백 추가 */
+    }
+
+    .CalendarMonth,
+    .CalendarDate {
+      order: 3; /* CalendarMonth와 CalendarDate를 세 번째로 배치 */
     }
   }
 }

@@ -52,6 +52,7 @@ const Commnunity = () => {
 
   useEffect(() => {
     setCurrentPage(page);
+    window.scrollTo(0, 0);
   }, [page]);
 
   // 페이지 변경 함수

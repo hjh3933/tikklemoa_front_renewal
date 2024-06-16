@@ -34,8 +34,17 @@ const CalendarModal = ({ isOpen, onClose, mode, data, selectedDate, refreshData 
   // 캘린더 입력 or 수정
   const handleSubmit = async () => {
     const storedToken = localStorage.getItem("token");
-    if (!price || !subcategory) {
-      alert("금액과 카테고리를 입력해주세요.");
+    if (category === "MINUS" && !expenseSubcategories.includes(subcategory)) {
+      alert("지출 카테고리에서 값을 선택해주세요.");
+      return;
+    }
+    if (category === "PLUS" && !incomeSubcategories.includes(subcategory)) {
+      alert("수입 카테고리에서 값을 선택해주세요.");
+      return;
+    }
+
+    if (!price) {
+      alert("금액을 입력해주세요.");
       return;
     }
 

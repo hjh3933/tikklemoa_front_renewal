@@ -6,6 +6,9 @@ import PwUpdate from "../components/PwUpdate";
 import MyBoardContent from "../components/MyBoardContent";
 import MyPostContent from "../components/MyPostContent";
 import { useLocation, useNavigate } from "react-router-dom";
+import "../styles/myBoardContent.scss";
+import "../styles/mypage.scss";
+import { isTokenExpired } from "../utils/tokenUtils";
 
 const Mypage = () => {
   const location = useLocation();
@@ -18,13 +21,14 @@ const Mypage = () => {
   const [toggle, setToggle] = useState(initialToggle);
   const [toggle2, setToggle2] = useState(initialToggle2);
 
-  useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    if (!storedToken) {
-      alert("로그인 회원만 이용할 수 있습니다");
-      navigate(`/login`);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (!token || isTokenExpired(token)) {
+  //     localStorage.clear();
+  //     alert("로그인이 만료되었습니다. 다시 로그인해주세요.");
+  //     navigate("/login");
+  //   }
+  // }, [navigate]);
 
   useEffect(() => {
     const params = new URLSearchParams();
@@ -35,7 +39,7 @@ const Mypage = () => {
 
   return (
     <>
-      <Header></Header>
+      <Header />
       <div className="MyPage">
         <div className="MyPageBox">
           {toggle ? <Profile setToggle={setToggle} /> : <PwUpdate setToggle={setToggle} />}
@@ -46,7 +50,7 @@ const Mypage = () => {
           )}
         </div>
       </div>
-      <Footer></Footer>
+      <Footer />
     </>
   );
 };

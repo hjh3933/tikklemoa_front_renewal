@@ -178,3 +178,90 @@
     }
   }
 }
+// media
+@media (max-width: 768px) {
+  .InsertBoard {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    height: auto;
+
+    .insertBoardBox {
+      min-width: 100%;
+      padding: 10px;
+
+      .boardBox {
+        padding: 0 5px;
+
+        .recipientBox,
+        .titleBox,
+        .fileBox,
+        .contentBox,
+        .existingImgUrls {
+          display: flex;
+          padding: 10px 0;
+          align-items: center;
+
+          .ten {
+            width: 20%; /* 적절한 비율로 변경 */
+            margin-bottom: 0; /* margin-bottom 제거 */
+          }
+
+          .input,
+          textarea,
+          .imgBox {
+            width: 80%; /* 적절한 비율로 변경 */
+          }
+
+          textarea {
+            height: 150px;
+          }
+        }
+
+        .existingImgUrls,
+        .fileBox {
+          .imgBox {
+            display: flex;
+            flex-wrap: nowrap; /* 변경: 가로 스크롤을 위해 nowrap 사용 */
+            gap: 5px;
+            overflow-x: auto; /* 추가: 가로 스크롤 가능하도록 설정 */
+
+            .addImgContainer {
+              min-width: 80px;
+              min-height: 80px;
+              max-width: 80px;
+              max-height: 80px;
+              .addIcon {
+                font-size: 1.5rem;
+                line-height: 80px;
+                height: 80px;
+              }
+            }
+            .imgContainer {
+              img {
+                height: 80px;
+              }
+              button {
+                width: 15px;
+                height: 15px;
+                font-size: 0.8rem;
+              }
+            }
+          }
+        }
+      }
+
+      .btnBox {
+        flex-direction: row;
+        justify-content: center;
+        div {
+          width: auto;
+          margin-bottom: 0;
+          text-align: center;
+        }
+        div:hover {
+          background-color: rgb(255, 149, 167);
+        }
+      }
+    }
+  }
+}

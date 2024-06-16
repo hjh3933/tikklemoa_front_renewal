@@ -48,6 +48,18 @@
             display: flex;
             justify-content: left;
             align-items: center;
+            position: relative;
+            .messageLink {
+              position: absolute;
+              top: 100%;
+              left: 0;
+              background-color: #ffffff;
+              padding: 5px;
+              border: 1px solid #ccc;
+              border-radius: 5px;
+              cursor: pointer;
+              z-index: 1000;
+            }
             .arrow {
               margin: 0 10px;
             }
@@ -208,6 +220,14 @@
         .date {
           font-size: 0.8rem;
           color: #888;
+        }
+      }
+      .postUserBox {
+        display: flex;
+        flex-direction: column !important;
+        align-items: start !important;
+        .date {
+          margin-top: 5px;
         }
       }
 

@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import "../styles/mypage.scss";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 

@@ -144,3 +144,126 @@
     }
   }
 }
+@media (max-width: 768px) {
+  .calendar_modal {
+    .modal-content {
+      width: 90%;
+      padding: 15px;
+      border-radius: 8px;
+      min-height: 460px;
+      h2 {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+      }
+      .close {
+        top: 5px;
+        right: 5px;
+        font-size: 20px;
+      }
+      .plusContentBox {
+        input,
+        .subcategory {
+          margin-bottom: 15px;
+        }
+        textarea {
+          margin-bottom: 15px;
+        }
+        input {
+          font-size: 0.9rem;
+          padding: 5px;
+        }
+        .subcategory {
+          div {
+            margin-right: 10px;
+            margin-bottom: 5px;
+          }
+        }
+        textarea {
+          font-size: 0.9rem;
+          padding: 5px;
+          line-height: 1.5;
+        }
+        .categorySelect {
+          .category {
+            padding: 8px 15px;
+            font-size: 0.9rem;
+          }
+        }
+        .btnBox {
+          flex-direction: column;
+          .insertBtn {
+            width: 100%;
+            margin: 5px 0;
+          }
+        }
+      }
+    }
+  }
+  .CalendarMonth {
+    .modal {
+      .modal-content {
+        width: 90%;
+        padding: 15px;
+        border-radius: 8px;
+        max-height: 90vh; /* 모달의 최대 높이 설정 */
+        overflow-y: auto; /* 모달 내에서 스크롤 가능하도록 설정 */
+        h2 {
+          font-size: 1.2rem;
+          margin-bottom: 15px;
+        }
+        .close {
+          top: 5px;
+          right: 5px;
+          font-size: 20px;
+        }
+        .theme,
+        .priceLevel,
+        .priceView {
+          margin-bottom: 15px; /* 각 섹션 간격 조정 */
+          display: flex;
+          flex-wrap: wrap; /* 제목과 입력 요소를 두 줄로 나누기 위해 사용 */
+        }
+        .theme_title,
+        .priceLevel_title,
+        .priceView_title {
+          flex-basis: 100%;
+          font-size: 1rem;
+          margin-bottom: 10px; /* 제목 아래에 간격 추가 */
+        }
+        .theme div,
+        .priceView label {
+          margin-bottom: 10px;
+        }
+        .theme input {
+          margin-right: 5px;
+        }
+        .priceLevel input {
+          width: 100%;
+          margin-bottom: 10px;
+          padding: 5px;
+          font-size: 0.9rem;
+        }
+        .priceView input[type="radio"] {
+          margin-right: 5px;
+        }
+        .btnBox {
+          display: flex;
+          justify-content: center;
+          flex-direction: column; /* 버튼을 세로로 배치 */
+          .insertBtn {
+            width: 100%;
+            background-color: #f1eae0;
+            text-align: center;
+            padding: 10px 0;
+            margin: 10px 0;
+            border-radius: 5px;
+            &:hover {
+              cursor: pointer;
+              background-color: #f0e3d1;
+            }
+          }
+        }
+      }
+    }
+  }
+}
