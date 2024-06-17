@@ -76,7 +76,7 @@ const BoardDetailContent = ({ boardDetails }) => {
       if (res.data.result) {
         setIsLiked(!isLiked);
         setCurrentLikesCount(isLiked ? currentLikesCount - 1 : currentLikesCount + 1);
-        console.log(res.data);
+        // console.log(res.data);
       }
     } catch (error) {
       if (error.response && error.response.status === 403) {
@@ -145,18 +145,20 @@ const BoardDetailContent = ({ boardDetails }) => {
               {nickname}
             </div>
             {messageVisible && nickname != loginNickName && (
-              <div
-                className="messageLink"
-                onClick={() => navigate(`/insertPost?recipient=${nickname}`)}
-              >
-                쪽지전송
-              </div>
+              <>
+                <div
+                  className="messageLink"
+                  onClick={() => navigate(`/insertPost?recipient=${nickname}`)}
+                >
+                  쪽지전송
+                </div>
+              </>
             )}
             <div>
               <img src={badgeUrl} alt="badge" className="badgeImg" />
             </div>
           </div>
-          <div className="date">{dateStr}</div>
+          <div className="date">{new Date(dateStr).toLocaleString()}</div>
         </div>
         <div className="titleBox">
           {/* <div className="title">글제목</div> */}

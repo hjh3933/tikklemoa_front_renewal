@@ -148,7 +148,7 @@ const PostDetailContent = ({ postDetails }) => {
             <div>{recipient}</div>
             <div className="postNick">{nickname == loginNickName ? "발신" : "수신"}</div>
           </div>
-          <div className="date">{dateStr}</div>
+          <div className="date">{new Date(dateStr).toLocaleString()}</div>
         </div>
         <div className="titleBox">
           {/* <div className="title">글제목</div> */}

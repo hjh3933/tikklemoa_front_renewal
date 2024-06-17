@@ -75,7 +75,7 @@ const PwUpdate = ({ setToggle }) => {
           Authorization: `Bearer ${storedToken}`,
         },
       });
-      console.log(res.data);
+      // console.log(res.data);
       if (res.data.result) {
         // 수정 성공
         setUserpw("");

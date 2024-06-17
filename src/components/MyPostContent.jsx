@@ -28,7 +28,7 @@ const MyPostContent = ({ setToggle2 }) => {
           },
         }
       );
-      console.log(res.data);
+      // console.log(res.data);
       setBoardList(res.data);
     } catch (error) {
       console.error("쪽지목록을 불러오는 중 오류 발생:", error);

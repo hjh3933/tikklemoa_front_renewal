@@ -11,13 +11,6 @@ import { isTokenExpired } from "../utils/tokenUtils";
 const BoardDetail = () => {
   const navigate = useNavigate();
   useEffect(() => {
-    // const token = localStorage.getItem("token");
-    // if (!token || isTokenExpired(token)) {
-    //   localStorage.clear();
-    //   alert("로그인이 만료되었습니다. 다시 로그인해주세요.");
-    //   navigate("/login");
-    // }
-    // 페이지 로드 시 스크롤을 맨 위로 설정
     window.scrollTo(0, 0);
   }, [navigate]);
 
@@ -48,7 +41,7 @@ const BoardDetail = () => {
         }
       );
       //   console.log(res.data);
-      console.log(result.data);
+      // console.log(result.data);
       setBoardDetails(res.data);
       setCommentList(result.data);
     } catch (error) {

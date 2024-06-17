@@ -10,7 +10,11 @@ const CalendarSet = ({ setToggle }) => {
       <div className="CalendarSet">
         <div className="Title">MY CALENDAR</div>
         <div className="calendarContentBox">
-          <CalendarMonth setSelectedDate={setSelectedDate} dateData={dateData} />
+          <CalendarMonth
+            setSelectedDate={setSelectedDate}
+            selectedDate={selectedDate}
+            dateData={dateData}
+          />
           <CalendarDate selectedDate={selectedDate} dateData={dateData} setDateData={setDateData} />
           <div className="CalBtnBox">
             <div onClick={() => setToggle(true)} className="nowSelected">

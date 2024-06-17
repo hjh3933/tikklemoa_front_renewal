@@ -37,7 +37,7 @@ const PostDetail = () => {
         },
       });
 
-      console.log(res.data);
+      // console.log(res.data);
       setPostDetails(res.data);
     } catch (error) {
       if (error.response && error.response.status === 403) {

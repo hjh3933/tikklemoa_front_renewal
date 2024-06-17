@@ -30,7 +30,7 @@ const Login = ({ setToggle }) => {
     if (res.data.result) {
       alert(res.data.msg);
       // 로그인 성공, user정보 로컬스토리지에 저장
-      console.log(res.data);
+      // console.log(res.data);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("nickname", res.data.nickname);
       localStorage.setItem("img", res.data.img);

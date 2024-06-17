@@ -40,7 +40,7 @@ const Join = ({ setToggle }) => {
         nickname: nickname,
       };
       const res = await axios.post(process.env.REACT_APP_API_SERVER + "/auth/checkName", data);
-      console.log(res.data);
+      // console.log(res.data);
       if (res.data.result) {
         alert(res.data.msg);
         // 체크 모양 변경
@@ -70,7 +70,7 @@ const Join = ({ setToggle }) => {
         userid: userid,
       };
       const res = await axios.post(process.env.REACT_APP_API_SERVER + "/auth/checkId", data);
-      console.log(res.data);
+      // console.log(res.data);
       if (res.data.result) {
         alert(res.data.msg);
         // 체크 모양 변경

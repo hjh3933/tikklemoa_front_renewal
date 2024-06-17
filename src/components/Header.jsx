@@ -82,10 +82,12 @@ const Header = () => {
               <div className="logout" onClick={logout}>
                 LOGOUT
               </div>
-              <img src={img} alt="프로필이미지" className="profileImg" />
-              <Link to={"/profile"} className="profile">
-                {nickname}
-              </Link>
+              <div className="userBox">
+                <img src={img} alt="프로필이미지" className="profileImg" />
+                <Link to={"/profile"} className="profile">
+                  {nickname}
+                </Link>
+              </div>
             </>
           )}
         </div>

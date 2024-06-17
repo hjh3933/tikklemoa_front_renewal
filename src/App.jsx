@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import MainPage from "./pages/MainPage";
 import "./styles/app.scss";
+import MainPage from "./pages/MainPage";
 import Commnunity from "./pages/Community";
 import Mypage from "./pages/Mypage";
 import MyCalendar from "./pages/MyCalendar";
@@ -10,6 +10,7 @@ import InsertPost from "./pages/InsertPost";
 import PostDetail from "./pages/PostDetail";
 import IndexPage from "./pages/IndexPage";
 import AuthRoute from "./components/AuthRoute";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
           <Route path="/insertPost" element={<AuthRoute element={InsertPost} />} />
           <Route path="/boardDetail" element={<AuthRoute element={BoardDetail} />} />
           <Route path="/postDetail" element={<AuthRoute element={PostDetail} />} />
+          {/* 404 페이지 */}
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
     </Router>

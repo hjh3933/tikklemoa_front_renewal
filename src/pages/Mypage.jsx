@@ -21,15 +21,6 @@ const Mypage = () => {
   const [toggle, setToggle] = useState(initialToggle);
   const [toggle2, setToggle2] = useState(initialToggle2);
 
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token");
-  //   if (!token || isTokenExpired(token)) {
-  //     localStorage.clear();
-  //     alert("로그인이 만료되었습니다. 다시 로그인해주세요.");
-  //     navigate("/login");
-  //   }
-  // }, [navigate]);
-
   useEffect(() => {
     const params = new URLSearchParams();
     params.set("toggle", toggle);

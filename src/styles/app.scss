@@ -7,8 +7,30 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  font-family: "Gowun Dodum", sans-serif;
 }
 a {
   text-decoration: none;
   color: black;
+}
+.errorDiv {
+  flex: 1;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 200px);
+  overflow: auto;
+  background-color: #e8e7e3;
+  flex-direction: column;
+  .imgDiv {
+    width: 200px;
+    img {
+      width: 100%;
+    }
+  }
+  .errorTitle {
+    font-size: 2rem;
+  }
 }

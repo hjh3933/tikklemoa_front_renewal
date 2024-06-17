@@ -55,7 +55,7 @@ const BoardCommentContent = ({ commentList, boardId, getDetails }) => {
         },
       });
 
-      console.log(res.date);
+      // console.log(res.date);
 
       if (res.data.result) {
         // 작성 성공

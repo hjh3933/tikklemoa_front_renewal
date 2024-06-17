@@ -78,6 +78,10 @@ $green-1: #dee2d5;
     // box-shadow: none !important;
     box-shadow: -3px -3px 5px rgba(0, 0, 0, 0.3);
 
+    .nowDate {
+      border: 3px solid white;
+    }
+
     .react-calendar__tile {
       @include theme-colors(red, $red-2, $red-3, $red-4, $red-5, $red-1);
       @include theme-colors(blue, $blue-2, $blue-3, $blue-4, $blue-5, $blue-1);

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import PieChart from "./PieChart";
 
-const CalendarStatsContent = ({ setToggle }) => {
+const CalendarStatsContent = () => {
   const today = new Date();
   const year = today.getFullYear();
   const month = String(today.getMonth() + 1).padStart(2, "0");
@@ -13,7 +13,11 @@ const CalendarStatsContent = ({ setToggle }) => {
 
   // state
   const [monthlyStats, setMonthlyStats] = useState([]);
-  const [nextBadge, setNextBadge] = useState("");
+  const [nextBadge, setNextBadge] = useState({
+    nextBadge: "",
+    totalPlus: 0,
+    totalMinus: 0,
+  });
   const [nextBadgeUrl, setNextBadgeUrl] = useState("");
   const [date, setDate] = useState(formattedDate);
   const navigate = useNavigate();
@@ -30,13 +34,12 @@ const CalendarStatsContent = ({ setToggle }) => {
   const getMonthStats = async () => {
     const storedToken = localStorage.getItem("token");
     try {
-      const dateStr = "2024-06";
       const res = await axios.get(process.env.REACT_APP_API_SERVER + `/getMonthTotal/${date}`, {
         headers: {
           Authorization: `Bearer ${storedToken}`,
         },
       });
-      console.log(res.data);
+      // console.log(res.data);
       setMonthlyStats(res.data);
     } catch (error) {
       console.error("월별통계를 불러오는 중 오류 발생:", error);
@@ -48,8 +51,7 @@ const CalendarStatsContent = ({ setToggle }) => {
   const getBadge = async () => {
     const storedToken = localStorage.getItem("token");
     try {
-      const dateStr = "2024-06";
-      const res = await axios.get(process.env.REACT_APP_API_SERVER + "/getNextBadge", {
+      const res = await axios.get(process.env.REACT_APP_API_SERVER + `/getNextBadge/${date}`, {
         headers: {
           Authorization: `Bearer ${storedToken}`,
         },
@@ -72,12 +74,11 @@ const CalendarStatsContent = ({ setToggle }) => {
     );
   };
 
-  useEffect(() => {
-    getBadge();
-  }, []);
+  // useEffect(() => {}, []);
 
   useEffect(() => {
     getMonthStats();
+    getBadge();
   }, [date]);
 
   const handleYearChange = (e) => {
@@ -160,22 +161,22 @@ const CalendarStatsContent = ({ setToggle }) => {
                   {el.percentage}%
                 </div>
                 <div className="subcategory">{el.subcategory}</div>
-                <div className="totalPrice">{el.totalPrice}원</div>
+                <div className="totalPrice">{el.totalPrice.toLocaleString()}원</div>
               </div>
             );
           })}
         </div>
-        {formattedDate === date && (
-          <div className="nextBadge">
-            <div className="badge_left">
-              <div className="ques">다음달 내 예상 등급은?</div>
-              <div>
-                {selectedMonth}월 총 수입: {nextBadge.totalPlus}원
-              </div>
-              <div>
-                {selectedMonth}월 총 지출: {nextBadge.totalMinus}원
-              </div>
+        <div className="nextBadge">
+          <div className="badge_left">
+            {formattedDate === date && <div className="ques">다음달 내 예상 등급은?</div>}
+            <div>
+              {selectedMonth}월 총 수입: {nextBadge.totalPlus.toLocaleString()}원
             </div>
+            <div>
+              {selectedMonth}월 총 지출: {nextBadge.totalMinus.toLocaleString()}원
+            </div>
+          </div>
+          {formattedDate === date && (
             <div className="badge_right">
               <div>
                 <FeedbackComponent level={nextBadge.nextBadge} />
@@ -184,8 +185,8 @@ const CalendarStatsContent = ({ setToggle }) => {
                 <img src={nextBadgeUrl} alt="badge_image" />
               </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </>
   );

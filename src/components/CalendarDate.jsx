@@ -76,6 +76,7 @@ const CalendarDate = ({ selectedDate, dateData, setDateData }) => {
           {dateData.map((el) => {
             const truncatedDetails =
               el.details.length > 5 ? `${el.details.slice(0, 5)}...` : el.details;
+            const formattedPrice = el.price.toLocaleString(); // 가격 포맷
             return (
               <div className="content" key={el.id}>
                 {el.category == "MINUS" ? (
@@ -85,7 +86,7 @@ const CalendarDate = ({ selectedDate, dateData, setDateData }) => {
                 )}
 
                 <div className="subcategory">{el.subcategory}</div>
-                <div className="price">{el.price}</div>
+                <div className="price">{formattedPrice}원</div>
                 <div className="details">{truncatedDetails}</div>
                 <div>
                   <i className="material-icons" onClick={() => openModal("edit", el)}>

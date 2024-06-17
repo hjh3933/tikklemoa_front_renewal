@@ -6,7 +6,7 @@ import Calendar from "react-calendar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const CalendarMonth = ({ setSelectedDate, dateData }) => {
+const CalendarMonth = ({ setSelectedDate, selectedDate, dateData }) => {
   const today = new Date();
   const year = today.getFullYear();
   const month = String(today.getMonth() + 1).padStart(2, "0");
@@ -129,39 +129,36 @@ const CalendarMonth = ({ setSelectedDate, dateData }) => {
 
       // 해당 날짜와 일치하는 monthData를 찾음
       const matchingData = monthData.find((data) => data.date === tileDateStr);
-      // if (!matchingData) return `react-calendar__tile react-calendar__tile--none`;
+
+      // 현재 날짜와 일치하면 nowDate 클래스 추가
+      let classNames = "";
+      if (tileDateStr === selectedDate) {
+        classNames += " nowDate";
+      }
+
       if (matchingData) {
         const { lone, ltwo, lthree, theme, priceView } = setting;
       }
 
-      if (!matchingData) return `react-calendar__tile react-calendar__tile--${theme}none`;
-      const { dateTotal } = matchingData;
-
-      if (theme === "none") return `react-calendar__tile react-calendar__tile--${theme}`;
-      if (dateTotal <= lone) {
-        return `react-calendar__tile react-calendar__tile--${theme}lone`;
-      } else if (dateTotal <= ltwo) {
-        return `react-calendar__tile react-calendar__tile--${theme}ltwo`;
-      } else if (dateTotal <= lthree) {
-        return `react-calendar__tile react-calendar__tile--${theme}lthree`;
+      if (matchingData) {
+        const { dateTotal } = matchingData;
+        if (theme === "none")
+          return `react-calendar__tile react-calendar__tile--${theme}${classNames}`;
+        if (dateTotal <= lone) {
+          return `react-calendar__tile react-calendar__tile--${theme}lone${classNames}`;
+        } else if (dateTotal <= ltwo) {
+          return `react-calendar__tile react-calendar__tile--${theme}ltwo${classNames}`;
+        } else if (dateTotal <= lthree) {
+          return `react-calendar__tile react-calendar__tile--${theme}lthree${classNames}`;
+        } else {
+          return `react-calendar__tile react-calendar__tile--${theme}more${classNames}`;
+        }
       } else {
-        return `react-calendar__tile react-calendar__tile--${theme}more`;
+        return `react-calendar__tile react-calendar__tile--${theme}none${classNames}`;
       }
     }
     return null;
   };
-
-  // const tileContent = ({ date }) => {
-  //   const today = new Date();
-  //   if (
-  //     date.getFullYear() === today.getFullYear() &&
-  //     date.getMonth() === today.getMonth() &&
-  //     date.getDate() === today.getDate()
-  //   ) {
-  //     return <div style={{ fontWeight: "bold" }}>Today</div>;
-  //   }
-  //   return null;
-  // };
 
   const tileContent = ({ date, view }) => {
     if (view === "month") {
@@ -178,16 +175,20 @@ const CalendarMonth = ({ setSelectedDate, dateData }) => {
       const { totalMinus, totalPlus, dateTotal } = matchingData;
       const { priceView } = setting;
 
+      const totalMinusFormat = totalMinus.toLocaleString();
+      const totalPlusFormat = totalPlus.toLocaleString();
+      const dateTotalFormat = dateTotal.toLocaleString();
+
       if (priceView) {
         return (
           <div className="tile-content">
             <div className="total_minus" style={{ color: "red" }}>
-              -{totalMinus}
+              -{totalMinusFormat}
             </div>
             <div className="total_plus" style={{ color: "blue" }}>
-              +{totalPlus}
+              +{totalPlusFormat}
             </div>
-            <div className="date_total"> {dateTotal}</div>
+            <div className="date_total"> {dateTotalFormat}</div>
           </div>
         );
       }

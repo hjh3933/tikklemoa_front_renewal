@@ -3,8 +3,6 @@
     text-align: center;
     padding: 10px 0px;
     font-size: 1.2rem;
-    font-weight: 600;
-    color: #ea8500;
   }
   .content_box {
     // background-color: pink;
@@ -12,6 +10,7 @@
     padding: 5px;
     .content {
       //   border: 1px solid black;
+      align-items: center;
       border-radius: 10px;
       background-color: #d1c2ae;
       padding: 10px 5px;
