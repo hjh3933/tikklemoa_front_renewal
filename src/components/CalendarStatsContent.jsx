@@ -43,7 +43,7 @@ const CalendarStatsContent = () => {
       setMonthlyStats(res.data);
     } catch (error) {
       console.error("월별통계를 불러오는 중 오류 발생:", error);
-      alert("월별통계를 불러오는 중 오류가 발생했습니다.");
+      // alert("월별통계를 불러오는 중 오류가 발생했습니다.");
     }
   };
 
@@ -62,7 +62,7 @@ const CalendarStatsContent = () => {
       setNextBadge(res.data);
     } catch (error) {
       console.error("뱃지 예상을 불러오는 중 오류 발생:", error);
-      alert("뱃지 예상을 불러오는 중 오류가 발생했습니다.");
+      // alert("뱃지 예상을 불러오는 중 오류가 발생했습니다.");
     }
   };
 

@@ -46,7 +46,7 @@ const BoardDetail = () => {
       setCommentList(result.data);
     } catch (error) {
       console.error("게시글 정보를 불러오는 중 오류 발생:", error);
-      alert("게시글 정보를 불러오는 중 오류가 발생했습니다.");
+      // alert("게시글 정보를 불러오는 중 오류가 발생했습니다.");
     }
   };
 

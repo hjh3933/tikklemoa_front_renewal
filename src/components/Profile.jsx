@@ -39,7 +39,7 @@ const Profile = ({ setToggle }) => {
       }
     } catch (error) {
       console.error("프로필을 불러오는 중 오류 발생:", error);
-      alert("프로필을 불러오는 중 오류가 발생했습니다.");
+      // alert("프로필을 불러오는 중 오류가 발생했습니다.");
     }
   };
 

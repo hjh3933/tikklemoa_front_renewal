@@ -32,7 +32,7 @@ const MyPostContent = ({ setToggle2 }) => {
       setBoardList(res.data);
     } catch (error) {
       console.error("쪽지목록을 불러오는 중 오류 발생:", error);
-      alert("쪽지목록을 불러오는 중 오류가 발생했습니다.");
+      // alert("쪽지목록을 불러오는 중 오류가 발생했습니다.");
     }
   };
 

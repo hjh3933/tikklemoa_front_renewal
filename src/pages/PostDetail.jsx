@@ -47,7 +47,7 @@ const PostDetail = () => {
         window.location.reload();
       } else {
         console.error("쪽지 정보를 불러오는 중 오류 발생:", error);
-        alert("쪽지 정보를 불러오는 중 오류가 발생했습니다.");
+        // alert("쪽지 정보를 불러오는 중 오류가 발생했습니다.");
       }
     }
   };

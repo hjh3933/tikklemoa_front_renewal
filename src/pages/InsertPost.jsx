@@ -91,13 +91,15 @@ const InsertPost = () => {
   };
 
   const handleSubmit = async () => {
-    if (!recipientExists) {
-      alert("존재하지 않는 수신자입니다. 닉네임을 다시 확인해 주세요.");
+    if (!title.trim() || !content.trim() || !recipient.trim()) {
+      alert("수신인, 제목과 내용을 모두 입력해 주세요.");
       return;
     }
 
-    if (!title.trim() || !content.trim() || !recipient.trim()) {
-      alert("수신인, 제목과 내용을 모두 입력해 주세요.");
+    checkRecipientExists(recipient);
+
+    if (!recipientExists) {
+      alert("존재하지 않는 수신자입니다. 닉네임을 다시 확인해 주세요.");
       return;
     }
 

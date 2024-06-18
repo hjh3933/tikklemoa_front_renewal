@@ -27,7 +27,7 @@ const Commnunity = () => {
       setBoardList(res.data);
     } catch (error) {
       console.error("게시글을 불러오는 중 오류 발생:", error);
-      alert("게시글을 불러오는 중 오류가 발생했습니다.");
+      // alert("게시글을 불러오는 중 오류가 발생했습니다.");
     }
   };
 

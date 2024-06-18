@@ -59,7 +59,7 @@ const CalendarMonth = ({ setSelectedDate, selectedDate, dateData }) => {
       setPriceView(res.data.priceView);
     } catch (error) {
       console.error("캘린더를 불러오는 중 오류 발생:", error);
-      alert("캘린더를 불러오는 중 오류가 발생했습니다.");
+      // alert("캘린더를 불러오는 중 오류가 발생했습니다.");
     }
   };
 
