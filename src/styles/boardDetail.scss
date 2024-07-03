@@ -346,3 +346,212 @@
     }
   }
 }
+@media (min-width: 768px) and (max-width: 991px) {
+  // 테블릿 세로
+  .BoardDetail {
+    margin-top: 50px;
+    margin-bottom: 100px;
+    padding: 10px;
+    height: auto;
+    background-color: #f9f9f9;
+
+    .BoardDetailBox {
+      flex-direction: column;
+      align-items: center;
+      width: 100%; /* 화면에 맞게 넓이를 100%로 조정 */
+
+      .BoardDetailContent,
+      .BoardCommentContent {
+        width: 90%; /* 넓이를 90%로 조정하여 더 크게 보이게 함 */
+        margin-bottom: 20px; /* 각 컨텐츠 사이의 간격 */
+        .boardBox {
+          .contentBox {
+            .content {
+              min-height: 200px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .BoardDetailContent {
+    padding: 10px; /* 내용과 경계 사이의 간격 추가 */
+    border-bottom: 1px solid rgba($color: #000000, $alpha: 0.3);
+    .boardBox {
+      .userBox,
+      .titleBox,
+      .imgBox,
+      .contentBox {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+
+        .content {
+          padding: 10px;
+          min-height: 150px;
+        }
+      }
+
+      .userBox {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        .user {
+          display: flex;
+          align-items: center;
+
+          div {
+            display: flex;
+            align-items: center;
+
+            .profileImg {
+              margin-right: 5px;
+              width: 30px; /* 프로필 이미지 크기 */
+              height: 30px;
+            }
+
+            .nickname {
+              margin-right: 5px;
+            }
+
+            .badgeImg {
+              width: 15px; /* 뱃지 이미지 크기 */
+            }
+          }
+        }
+
+        .date {
+          font-size: 0.8rem;
+          color: #888;
+        }
+      }
+      .postUserBox {
+        display: flex;
+        flex-direction: column !important;
+        align-items: start !important;
+        .date {
+          margin-top: 5px;
+        }
+      }
+
+      .imgBox {
+        .cont {
+          display: flex; /* Flexbox로 이미지를 가로로 정렬 */
+          overflow-x: auto; /* 가로 스크롤을 활성화 */
+          img {
+            height: 100px; /* 높이를 100px로 고정 */
+            width: auto; /* 너비는 비율에 맞게 자동 설정 */
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+
+    .btnBox {
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+
+      .centerBox {
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+
+  .BoardCommentContent {
+    padding: 10px; /* 내용과 경계 사이의 간격 추가 */
+    min-width: none !important;
+    max-width: none !important;
+    .comment-list {
+      max-height: none;
+      min-height: auto;
+
+      .comment {
+        .comment-header {
+          display: flex;
+          align-items: center;
+
+          .profile-img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+          }
+
+          .comment-info {
+            display: flex;
+            align-items: flex-start; /* 요소들을 한 줄에 배치 */
+
+            .nickname {
+              font-weight: bold;
+              display: flex;
+              align-items: center;
+              margin-left: 10px;
+
+              .badge-img {
+                width: 10px;
+                margin-left: 5px;
+              }
+
+              .delete-button {
+                margin-left: 10px;
+                background: none;
+                border: none;
+                color: rgb(188, 0, 0);
+                font-size: 1rem;
+                cursor: pointer;
+
+                &:hover {
+                  color: darkred;
+                }
+              }
+            }
+
+            .date {
+              font-size: 0.8em;
+              color: #aaa;
+              margin-left: 10px; /* 닉네임과 작성 시간 사이의 간격 */
+            }
+          }
+        }
+
+        .comment-content {
+          margin-top: 10px;
+          word-wrap: break-word; /* 긴 단어가 컨테이너 너비를 초과할 때 줄바꿈 */
+          white-space: pre-wrap; /* 연속된 공백과 줄바꿈 문자를 유지하며 텍스트 줄바꿈 */
+        }
+      }
+    }
+
+    .comment-input {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+
+      button {
+        padding: 10px 20px;
+        background-color: #fb9559;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #ff7728;
+        }
+      }
+    }
+  }
+}

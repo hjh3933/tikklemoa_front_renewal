@@ -70,3 +70,80 @@
     }
   }
 }
+
+@media (min-width: 768px) and (max-width: 991px) {
+  // 테블릿 세로
+  .IndexPage {
+    flex: 1;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 200px);
+    overflow: auto;
+
+    .indexContentBox {
+      min-width: 100%;
+      flex-direction: column;
+      gap: 20px;
+      padding: 10px;
+
+      .box {
+        width: 100%;
+        height: auto;
+        padding: 20px;
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  // 테블릿 가로
+  .IndexPage {
+    flex: 1;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 200px);
+    overflow: auto;
+    .indexContentBox {
+      min-width: 1000px;
+      padding: 20px;
+      margin: auto;
+      // border: 1px solid black;
+      display: flex;
+      gap: 50px;
+      justify-content: center;
+      .box {
+        //   border: 1px solid rgb(150, 150, 150);
+        border-radius: 10px;
+        width: 300px;
+        height: 300px;
+        padding: 10px;
+        background-color: #f7f3ee;
+        .iconBox {
+          margin-bottom: 20px;
+          width: 100%;
+          img {
+            border-radius: 10px;
+            width: 100%;
+          }
+        }
+        .detailBox {
+          text-align: center;
+          .TT {
+            margin: 10px 0;
+          }
+          p {
+            margin: 0;
+            color: #666;
+            font-size: 0.8rem;
+          }
+        }
+      }
+    }
+  }
+}

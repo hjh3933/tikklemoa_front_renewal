@@ -355,3 +355,225 @@
     }
   }
 }
+
+@media (min-width: 768px) and (max-width: 991px) {
+  // 테블릿 세로
+  .MyPage {
+    flex-direction: column;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    height: auto;
+  }
+
+  .MyPageBox {
+    flex-direction: column;
+    width: 100%;
+    .Profile {
+      flex-direction: column;
+      align-items: center;
+      margin-right: 0;
+      width: 100%;
+      .profileBox {
+        width: 90%;
+        margin: 20px 0;
+        padding: 20px;
+        .titleBox {
+          justify-content: center;
+          .title {
+            font-size: 1.2rem;
+          }
+          img {
+            width: 12px;
+          }
+        }
+        .profileImg {
+          margin-top: 10px;
+          img {
+            width: 80px;
+            height: 80px;
+          }
+        }
+        .inputBox {
+          padding: 20px 0;
+          flex-direction: row;
+          align-items: center;
+          .leftBox {
+            width: 20%;
+            text-align: left;
+            // padding: 0 10px;
+            div {
+              font-size: 0.9rem;
+            }
+          }
+          .rightBox {
+            width: 80%;
+            text-align: left;
+            // padding: 0 10px;
+            .check {
+              i {
+                margin-left: 5px;
+              }
+            }
+            input {
+              width: calc(100% - 20px);
+              margin-top: 5px;
+            }
+            .id_msg,
+            .pw_msg {
+              text-align: left;
+              margin-left: 10px;
+              font-size: 0.7rem;
+              color: red;
+            }
+            .id_msg:empty,
+            .pw_msg:empty {
+              display: none;
+            }
+          }
+        }
+        .check {
+          justify-content: space-between;
+        }
+        .id_msg,
+        .pw_msg {
+          margin-left: 0;
+          text-align: center;
+        }
+      }
+      .profileBtnBox {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        order: -1;
+        height: auto;
+        margin-top: 10px;
+
+        .goProfile,
+        .goPwUpdate {
+          width: 30%;
+          font-size: 0.8rem;
+        }
+      }
+      .btnBox {
+        display: flex;
+        // flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        .updateBtn,
+        .cancelBtn {
+          // width: 80%;
+          margin: 5px 0;
+        }
+      }
+    }
+    .MyBoardContent {
+      flex-direction: column;
+      align-items: center;
+      margin-right: 0;
+      width: 100%;
+      margin-bottom: 100px;
+      .myBoardBox {
+        width: 90% !important;
+        margin: 20px 0;
+        padding: 20px;
+        .insertPostBox {
+          margin: 10px 0;
+          text-align: right;
+          a {
+            font-size: 0.8rem;
+          }
+          .material-icons {
+            color: white;
+          }
+        }
+        .myContent_header {
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          .header {
+            width: 100%;
+            text-align: center;
+            margin: 5px 0;
+          }
+        }
+        .boardListBox {
+          .BoardList {
+            display: inline-block !important;
+            align-items: flex-start;
+            // padding: 10px 5px;
+
+            .listContent {
+              width: 100%;
+              text-align: left;
+              margin-bottom: 5px;
+            }
+
+            .userAndTitle {
+              display: flex;
+              justify-content: space-between;
+              width: 100%;
+
+              .listContent.title {
+                width: 70%;
+              }
+
+              .user {
+                display: flex;
+                align-items: center;
+                width: 30%;
+
+                div {
+                  margin-right: 5px;
+                  img {
+                    width: 15px; /* 뱃지 이미지 크기 조정 */
+                  }
+                }
+              }
+            }
+
+            .dateAndLikes {
+              display: flex;
+              justify-content: space-between;
+              width: 100%;
+            }
+          }
+        }
+        .page {
+          display: flex;
+          justify-content: center;
+          .pagination {
+            flex-wrap: wrap;
+            div {
+              margin: 0 5px;
+              padding: 5px;
+            }
+          }
+        }
+      }
+      .myBoardBtnBox {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        order: -1;
+        height: auto !important;
+        margin-top: 10px;
+        .goBoard,
+        .goPost {
+          width: 30%;
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  // 테블릿 가로
+  .MyPage .MyPageBox .MyBoardContent .myBoardBox {
+    width: 500px !important;
+  }
+  .MyPageBox .Profile .profileBox {
+    width: 400px !important;
+  }
+}
